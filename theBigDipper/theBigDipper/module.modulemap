@@ -1,0 +1,5 @@
+module SimpleLib {
+    header "simple.h"
+    link "simple"
+    export *
+}

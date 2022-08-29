@@ -24,6 +24,7 @@ class MainMenu: NSObject {
                    menu.addItem(aboutMenuItem)
                 // Adding a seperator
                 menu.addItem(NSMenuItem.separator())
+                
 
                 // Adding a quit menu item
                 let quitMenuItem = NSMenuItem(

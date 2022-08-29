@@ -14,7 +14,28 @@
 		6955EDE928ABD87400F50E3F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6955EDE828ABD87400F50E3F /* Persistence.swift */; };
 		6955EDEC28ABD87400F50E3F /* theBigDipper.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6955EDEA28ABD87400F50E3F /* theBigDipper.xcdatamodeld */; };
 		6955EDF528ABDEE800F50E3F /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6955EDF428ABDEE800F50E3F /* MainMenu.swift */; };
+		69F6898328BC781500968917 /* AppSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F6898228BC781500968917 /* AppSetting.swift */; };
+		69F6899228BCCC6700968917 /* simple.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69F6899128BCCC5000968917 /* simple.a */; };
+		69F6899428BCCD9700968917 /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F6899328BCCD9700968917 /* utils.swift */; };
+		69F6899628BCD0F900968917 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 69F6899528BCD0F900968917 /* Cartfile */; };
+		69F6899828BCD24400968917 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69F6899728BCD24400968917 /* SwiftyJSON.framework */; };
+		69F6899928BCD24400968917 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 69F6899728BCD24400968917 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		69F6899C28BCE76000968917 /* AppConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F6899B28BCE76000968917 /* AppConst.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		69F6899A28BCD24400968917 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				69F6899928BCD24400968917 /* SwiftyJSON.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		6955EDDC28ABD87200F50E3F /* theBigDipper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = theBigDipper.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -27,6 +48,13 @@
 		6955EDED28ABD87400F50E3F /* theBigDipper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = theBigDipper.entitlements; sourceTree = "<group>"; };
 		6955EDF328ABD96800F50E3F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		6955EDF428ABDEE800F50E3F /* MainMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
+		69F6898228BC781500968917 /* AppSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSetting.swift; sourceTree = "<group>"; };
+		69F6898C28BC8AC400968917 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		69F6899128BCCC5000968917 /* simple.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = simple.a; path = theBigDipper/simple.a; sourceTree = "<group>"; };
+		69F6899328BCCD9700968917 /* utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
+		69F6899528BCD0F900968917 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
+		69F6899728BCD24400968917 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = theBigDipper/Carthage/Build/Mac/SwiftyJSON.framework; sourceTree = "<group>"; };
+		69F6899B28BCE76000968917 /* AppConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConst.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,6 +62,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69F6899828BCD24400968917 /* SwiftyJSON.framework in Frameworks */,
+				69F6899228BCCC6700968917 /* simple.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -45,6 +75,7 @@
 			children = (
 				6955EDDE28ABD87200F50E3F /* theBigDipper */,
 				6955EDDD28ABD87200F50E3F /* Products */,
+				69F6898628BC7C6300968917 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -59,6 +90,9 @@
 		6955EDDE28ABD87200F50E3F /* theBigDipper */ = {
 			isa = PBXGroup;
 			children = (
+				69F6898C28BC8AC400968917 /* module.modulemap */,
+				69F6899528BCD0F900968917 /* Cartfile */,
+				69F6898128BC77F500968917 /* common */,
 				6955EDF328ABD96800F50E3F /* Info.plist */,
 				6955EDDF28ABD87200F50E3F /* theBigDipperApp.swift */,
 				6955EDF428ABDEE800F50E3F /* MainMenu.swift */,
@@ -80,6 +114,25 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		69F6898128BC77F500968917 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				69F6898228BC781500968917 /* AppSetting.swift */,
+				69F6899B28BCE76000968917 /* AppConst.swift */,
+				69F6899328BCCD9700968917 /* utils.swift */,
+			);
+			path = common;
+			sourceTree = "<group>";
+		};
+		69F6898628BC7C6300968917 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				69F6899728BCD24400968917 /* SwiftyJSON.framework */,
+				69F6899128BCCC5000968917 /* simple.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -90,6 +143,7 @@
 				6955EDD828ABD87200F50E3F /* Sources */,
 				6955EDD928ABD87200F50E3F /* Frameworks */,
 				6955EDDA28ABD87200F50E3F /* Resources */,
+				69F6899A28BCD24400968917 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -138,6 +192,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69F6899628BCD0F900968917 /* Cartfile in Resources */,
 				6955EDE728ABD87400F50E3F /* Preview Assets.xcassets in Resources */,
 				6955EDE428ABD87400F50E3F /* Assets.xcassets in Resources */,
 			);
@@ -151,7 +206,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				6955EDF528ABDEE800F50E3F /* MainMenu.swift in Sources */,
+				69F6899C28BCE76000968917 /* AppConst.swift in Sources */,
+				69F6899428BCCD9700968917 /* utils.swift in Sources */,
 				6955EDEC28ABD87400F50E3F /* theBigDipper.xcdatamodeld in Sources */,
+				69F6898328BC781500968917 /* AppSetting.swift in Sources */,
 				6955EDE928ABD87400F50E3F /* Persistence.swift in Sources */,
 				6955EDE228ABD87200F50E3F /* ContentView.swift in Sources */,
 				6955EDE028ABD87200F50E3F /* theBigDipperApp.swift in Sources */,
@@ -279,6 +337,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LIBRARY = "libc++";
 				CODE_SIGN_ENTITLEMENTS = theBigDipper/theBigDipper.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -287,17 +346,28 @@
 				DEVELOPMENT_TEAM = 6A53CAFMZ9;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+					"$(PROJECT_DIR)/theBigDipper/Carthage/Build/Mac",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/theBigDipper";
 				INFOPLIST_FILE = theBigDipper/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/theBigDipper",
+				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ninjahome.theBigDipper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INCLUDE_PATHS = "${SRCROOT}";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -307,6 +377,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LIBRARY = "libc++";
 				CODE_SIGN_ENTITLEMENTS = theBigDipper/theBigDipper.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -315,17 +386,28 @@
 				DEVELOPMENT_TEAM = 6A53CAFMZ9;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+					"$(PROJECT_DIR)/theBigDipper/Carthage/Build/Mac",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/theBigDipper";
 				INFOPLIST_FILE = theBigDipper/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/theBigDipper",
+				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ninjahome.theBigDipper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INCLUDE_PATHS = "${SRCROOT}";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
