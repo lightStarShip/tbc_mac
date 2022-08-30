@@ -15,6 +15,12 @@
 		6955EDEC28ABD87400F50E3F /* theBigDipper.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6955EDEA28ABD87400F50E3F /* theBigDipper.xcdatamodeld */; };
 		6955EDF528ABDEE800F50E3F /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6955EDF428ABDEE800F50E3F /* MainMenu.swift */; };
 		69E2B25D28BDE814002E23B5 /* AppErr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E2B25C28BDE814002E23B5 /* AppErr.swift */; };
+		69E2B26528BDF605002E23B5 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E2B26428BDF605002E23B5 /* main.swift */; };
+		69E2B26A28BDF8A4002E23B5 /* install_proxy_helper.sh in Resources */ = {isa = PBXBuildFile; fileRef = 69E2B26928BDF8A4002E23B5 /* install_proxy_helper.sh */; };
+		69E2B26C28BDF8E1002E23B5 /* fix_dir_owner.sh in Resources */ = {isa = PBXBuildFile; fileRef = 69E2B26B28BDF8E1002E23B5 /* fix_dir_owner.sh */; };
+		69E2B26E28BDF908002E23B5 /* SysProxyHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E2B26D28BDF908002E23B5 /* SysProxyHelper.swift */; };
+		69E2B27228BDFC4B002E23B5 /* PacServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E2B27128BDFC4B002E23B5 /* PacServer.swift */; };
+		69E2B27428BE0125002E23B5 /* gfw.js in Resources */ = {isa = PBXBuildFile; fileRef = 69E2B27328BE0125002E23B5 /* gfw.js */; };
 		69F6898328BC781500968917 /* AppSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F6898228BC781500968917 /* AppSetting.swift */; };
 		69F6899228BCCC6700968917 /* simple.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69F6899128BCCC5000968917 /* simple.a */; };
 		69F6899428BCCD9700968917 /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F6899328BCCD9700968917 /* utils.swift */; };
@@ -24,7 +30,26 @@
 		69F6899C28BCE76000968917 /* AppConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F6899B28BCE76000968917 /* AppConst.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		69E2B26F28BDFAD6002E23B5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6955EDD428ABD87200F50E3F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 69E2B26128BDF605002E23B5;
+			remoteInfo = SystemConfig;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
+		69E2B26028BDF605002E23B5 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		69F6899A28BCD24400968917 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -50,6 +75,13 @@
 		6955EDF328ABD96800F50E3F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		6955EDF428ABDEE800F50E3F /* MainMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
 		69E2B25C28BDE814002E23B5 /* AppErr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppErr.swift; sourceTree = "<group>"; };
+		69E2B26228BDF605002E23B5 /* SystemConfig */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SystemConfig; sourceTree = BUILT_PRODUCTS_DIR; };
+		69E2B26428BDF605002E23B5 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		69E2B26928BDF8A4002E23B5 /* install_proxy_helper.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = install_proxy_helper.sh; sourceTree = "<group>"; };
+		69E2B26B28BDF8E1002E23B5 /* fix_dir_owner.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = fix_dir_owner.sh; sourceTree = "<group>"; };
+		69E2B26D28BDF908002E23B5 /* SysProxyHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SysProxyHelper.swift; sourceTree = "<group>"; };
+		69E2B27128BDFC4B002E23B5 /* PacServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacServer.swift; sourceTree = "<group>"; };
+		69E2B27328BE0125002E23B5 /* gfw.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = gfw.js; sourceTree = "<group>"; };
 		69F6898228BC781500968917 /* AppSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSetting.swift; sourceTree = "<group>"; };
 		69F6898C28BC8AC400968917 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		69F6899128BCCC5000968917 /* simple.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = simple.a; path = theBigDipper/simple.a; sourceTree = "<group>"; };
@@ -69,6 +101,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		69E2B25F28BDF605002E23B5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -76,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				6955EDDE28ABD87200F50E3F /* theBigDipper */,
+				69E2B26328BDF605002E23B5 /* SystemConfig */,
 				6955EDDD28ABD87200F50E3F /* Products */,
 				69F6898628BC7C6300968917 /* Frameworks */,
 			);
@@ -85,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				6955EDDC28ABD87200F50E3F /* theBigDipper.app */,
+				69E2B26228BDF605002E23B5 /* SystemConfig */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -116,13 +157,26 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		69E2B26328BDF605002E23B5 /* SystemConfig */ = {
+			isa = PBXGroup;
+			children = (
+				69E2B26428BDF605002E23B5 /* main.swift */,
+			);
+			path = SystemConfig;
+			sourceTree = "<group>";
+		};
 		69F6898128BC77F500968917 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				69E2B27328BE0125002E23B5 /* gfw.js */,
 				69F6898228BC781500968917 /* AppSetting.swift */,
 				69F6899B28BCE76000968917 /* AppConst.swift */,
 				69F6899328BCCD9700968917 /* utils.swift */,
+				69E2B26D28BDF908002E23B5 /* SysProxyHelper.swift */,
+				69E2B26B28BDF8E1002E23B5 /* fix_dir_owner.sh */,
+				69E2B26928BDF8A4002E23B5 /* install_proxy_helper.sh */,
 				69E2B25C28BDE814002E23B5 /* AppErr.swift */,
+				69E2B27128BDFC4B002E23B5 /* PacServer.swift */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -151,11 +205,29 @@
 			buildRules = (
 			);
 			dependencies = (
+				69E2B27028BDFAD6002E23B5 /* PBXTargetDependency */,
 			);
 			name = theBigDipper;
 			productName = theBigDipper;
 			productReference = 6955EDDC28ABD87200F50E3F /* theBigDipper.app */;
 			productType = "com.apple.product-type.application";
+		};
+		69E2B26128BDF605002E23B5 /* SystemConfig */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 69E2B26628BDF605002E23B5 /* Build configuration list for PBXNativeTarget "SystemConfig" */;
+			buildPhases = (
+				69E2B25E28BDF605002E23B5 /* Sources */,
+				69E2B25F28BDF605002E23B5 /* Frameworks */,
+				69E2B26028BDF605002E23B5 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SystemConfig;
+			productName = SystemConfig;
+			productReference = 69E2B26228BDF605002E23B5 /* SystemConfig */;
+			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
@@ -168,6 +240,9 @@
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
 					6955EDDB28ABD87200F50E3F = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
+					69E2B26128BDF605002E23B5 = {
 						CreatedOnToolsVersion = 13.4.1;
 					};
 				};
@@ -186,6 +261,7 @@
 			projectRoot = "";
 			targets = (
 				6955EDDB28ABD87200F50E3F /* theBigDipper */,
+				69E2B26128BDF605002E23B5 /* SystemConfig */,
 			);
 		};
 /* End PBXProject section */
@@ -195,9 +271,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69E2B26C28BDF8E1002E23B5 /* fix_dir_owner.sh in Resources */,
 				69F6899628BCD0F900968917 /* Cartfile in Resources */,
 				6955EDE728ABD87400F50E3F /* Preview Assets.xcassets in Resources */,
 				6955EDE428ABD87400F50E3F /* Assets.xcassets in Resources */,
+				69E2B26A28BDF8A4002E23B5 /* install_proxy_helper.sh in Resources */,
+				69E2B27428BE0125002E23B5 /* gfw.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,11 +295,29 @@
 				6955EDE928ABD87400F50E3F /* Persistence.swift in Sources */,
 				6955EDE228ABD87200F50E3F /* ContentView.swift in Sources */,
 				69E2B25D28BDE814002E23B5 /* AppErr.swift in Sources */,
+				69E2B26E28BDF908002E23B5 /* SysProxyHelper.swift in Sources */,
 				6955EDE028ABD87200F50E3F /* theBigDipperApp.swift in Sources */,
+				69E2B27228BDFC4B002E23B5 /* PacServer.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		69E2B25E28BDF605002E23B5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				69E2B26528BDF605002E23B5 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		69E2B27028BDFAD6002E23B5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 69E2B26128BDF605002E23B5 /* SystemConfig */;
+			targetProxy = 69E2B26F28BDFAD6002E23B5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		6955EDEE28ABD87400F50E3F /* Debug */ = {
@@ -350,10 +447,7 @@
 				DEVELOPMENT_TEAM = 6A53CAFMZ9;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
-					"$(PROJECT_DIR)/theBigDipper/Carthage/Build/Mac",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/theBigDipper/Carthage/Build/Mac";
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/theBigDipper";
 				INFOPLIST_FILE = theBigDipper/Info.plist;
@@ -390,10 +484,7 @@
 				DEVELOPMENT_TEAM = 6A53CAFMZ9;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
-					"$(PROJECT_DIR)/theBigDipper/Carthage/Build/Mac",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/theBigDipper/Carthage/Build/Mac";
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/theBigDipper";
 				INFOPLIST_FILE = theBigDipper/Info.plist;
@@ -416,6 +507,28 @@
 			};
 			name = Release;
 		};
+		69E2B26728BDF605002E23B5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6A53CAFMZ9;
+				ENABLE_HARDENED_RUNTIME = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		69E2B26828BDF605002E23B5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6A53CAFMZ9;
+				ENABLE_HARDENED_RUNTIME = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -433,6 +546,15 @@
 			buildConfigurations = (
 				6955EDF128ABD87400F50E3F /* Debug */,
 				6955EDF228ABD87400F50E3F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		69E2B26628BDF605002E23B5 /* Build configuration list for PBXNativeTarget "SystemConfig" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				69E2B26728BDF605002E23B5 /* Debug */,
+				69E2B26828BDF605002E23B5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
