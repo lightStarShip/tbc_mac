@@ -14,9 +14,9 @@ let PACServerPort = 31087;
 let ProxyLocalPort = 31080;
 let kDefaultPacURL = "http://127.0.0.1:\(PACServerPort)/proxy.pac";
 
-main(CommandLine.arguments)
+setupProxy(CommandLine.arguments)
 
-func main(_ args: [String]){
+func setupProxy(_ args: [String]){
         print("============> start")
         if (args.count != 2) {
                 NSLog("Usage: SystemConfig [version]/[disable, pac global]>");

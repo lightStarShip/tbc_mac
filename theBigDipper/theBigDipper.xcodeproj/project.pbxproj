@@ -16,6 +16,7 @@
 		6955EDF528ABDEE800F50E3F /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6955EDF428ABDEE800F50E3F /* MainMenu.swift */; };
 		69AAA8D028BF387E003E5BE1 /* GCDWebServers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69AAA8CF28BF387E003E5BE1 /* GCDWebServers.framework */; };
 		69AAA8D128BF387E003E5BE1 /* GCDWebServers.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 69AAA8CF28BF387E003E5BE1 /* GCDWebServers.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		69AAA8DE28BF63EB003E5BE1 /* SystemConfig in Embed Helper Tools */ = {isa = PBXBuildFile; fileRef = 69E2B26228BDF605002E23B5 /* SystemConfig */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		69E2B25D28BDE814002E23B5 /* AppErr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E2B25C28BDE814002E23B5 /* AppErr.swift */; };
 		69E2B26528BDF605002E23B5 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E2B26428BDF605002E23B5 /* main.swift */; };
 		69E2B26A28BDF8A4002E23B5 /* install_proxy_helper.sh in Resources */ = {isa = PBXBuildFile; fileRef = 69E2B26928BDF8A4002E23B5 /* install_proxy_helper.sh */; };
@@ -43,6 +44,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		69AAA8DD28BF6346003E5BE1 /* Embed Helper Tools */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				69AAA8DE28BF63EB003E5BE1 /* SystemConfig in Embed Helper Tools */,
+			);
+			name = "Embed Helper Tools";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		69E2B26028BDF605002E23B5 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -207,6 +219,7 @@
 				6955EDD928ABD87200F50E3F /* Frameworks */,
 				6955EDDA28ABD87200F50E3F /* Resources */,
 				69F6899A28BCD24400968917 /* Embed Frameworks */,
+				69AAA8DD28BF6346003E5BE1 /* Embed Helper Tools */,
 			);
 			buildRules = (
 			);
@@ -376,7 +389,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -430,7 +443,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -467,6 +480,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/theBigDipper",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.star.theBigDipper;
@@ -505,6 +519,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/theBigDipper",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.star.theBigDipper;
@@ -518,14 +533,17 @@
 		69E2B26728BDF605002E23B5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6A53CAFMZ9;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/theBigDipper/Info.plist";
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.star.SystemConfig;
+				OTHER_CODE_SIGN_FLAGS = "$(inherited) -i $(PRODUCT_BUNDLE_IDENTIFIER)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.star.theBigDipper.SystemConfig;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -533,14 +551,17 @@
 		69E2B26828BDF605002E23B5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6A53CAFMZ9;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/theBigDipper/Info.plist";
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.star.SystemConfig;
+				OTHER_CODE_SIGN_FLAGS = "$(inherited) -i $(PRODUCT_BUNDLE_IDENTIFIER)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.star.theBigDipper.SystemConfig;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
