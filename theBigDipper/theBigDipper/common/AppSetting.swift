@@ -42,12 +42,6 @@ class AppSetting:NSObject{
         
         static func initSettting(){
                 InitLib(AppSetting.StripeDebugMode,AppConstants.ConfigUrl.toGoString(), systemCallBack,uiLog)
-                
-//                try  ensureLaunchAgentsDirOwner()
-//
-//                SysProxyHelper.install()
-//                SysProxyHelper.SetupProxy(isGlocal: false)
-                
                 setupProxy(isGlobal: false, on: true)
                 print("---------------->>>>")
         }
