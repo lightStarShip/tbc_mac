@@ -2,7 +2,7 @@ import Foundation
 
 open class SysProxyHelper {
         
-        static let kProxyConfigPath = "/Library/Application Support/TheBigDipper/SystemConfig"
+        static let kProxyConfigPath = "/Library/Application Support/theBigDipper/SystemConfig"
         static public let kSysProxyConfigVersion = "0.1.0";
         
         public static func checkVersion() -> Bool {
@@ -36,12 +36,13 @@ open class SysProxyHelper {
                         let appleScriptStr = "do shell script \"bash \(scriptPath)\" with administrator privileges"
                         let appleScript = NSAppleScript(source: appleScriptStr)
                         
-                        var dict: NSDictionary?
-                        if let _ = appleScript?.executeAndReturnError(&dict) {
-                                return true
-                        } else {
+                        var err: NSDictionary?
+                        appleScript?.executeAndReturnError(&err)
+                        if let e = err{
+                                print(e)
                                 return false
                         }
+                        return true
                 }
                 return true
         }
@@ -65,5 +66,23 @@ open class SysProxyHelper {
                 task.launch()
                 task.waitUntilExit()
                 return task.terminationStatus == 0
+        }
+        
+        static func ensureLaunchAgentsDirOwner () throws{
+                let dirPath = NSHomeDirectory() + "/Library/LaunchAgents"
+                let fileMgr = FileManager.default
+                if !fileMgr.fileExists(atPath: dirPath) {
+                    exit(-1)
+                }
+                
+                let attrs = try fileMgr.attributesOfItem(atPath: dirPath)
+                if attrs[FileAttributeKey.ownerAccountName] as! String != NSUserName() {
+                        let bashFilePath = Bundle.main.path(forResource: "fix_dir_owner.sh", ofType: nil)!
+                        let script = "do shell script \"bash \\\"\(bashFilePath)\\\" \(NSUserName()) \" with administrator privileges"
+                        if let appleScript = NSAppleScript(source: script) {
+                                var err: NSDictionary? = nil
+                                appleScript.executeAndReturnError(&err)
+                        }
+                }
         }
 }

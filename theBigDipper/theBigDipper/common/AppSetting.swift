@@ -37,9 +37,10 @@ class AppSetting:NSObject{
         static func initSettting(){
                 InitLib(AppSetting.StripeDebugMode,AppConstants.ConfigUrl.toGoString(), systemCallBack,uiLog)
                 
-                try  ensureLaunchAgentsDirOwner()
+//                try  ensureLaunchAgentsDirOwner()
                 
                 SysProxyHelper.install()
+                SysProxyHelper.SetupProxy(isGlocal: false)
                 
         }
         
@@ -50,26 +51,4 @@ class AppSetting:NSObject{
         static func log(_ str:String){
                 NSLog("\(str)")
         }
-}
-
-extension AppSetting{
-        
-        func ensureLaunchAgentsDirOwner () throws{
-                let dirPath = NSHomeDirectory() + "/Library/LaunchAgents"
-                let fileMgr = FileManager.default
-                if !fileMgr.fileExists(atPath: dirPath) {
-                    exit(-1)
-                }
-                
-                let attrs = try fileMgr.attributesOfItem(atPath: dirPath)
-                if attrs[FileAttributeKey.ownerAccountName] as! String != NSUserName() {
-                        let bashFilePath = Bundle.main.path(forResource: "fix_dir_owner.sh", ofType: nil)!
-                        let script = "do shell script \"bash \\\"\(bashFilePath)\\\" \(NSUserName()) \" with administrator privileges"
-                        if let appleScript = NSAppleScript(source: script) {
-                                var err: NSDictionary? = nil
-                                appleScript.executeAndReturnError(&err)
-                        }
-                }
-        }
-
 }

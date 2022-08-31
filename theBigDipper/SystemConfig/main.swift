@@ -14,12 +14,13 @@ let PACServerPort = 31087;
 let ProxyLocalPort = 31080;
 let kDefaultPacURL = "http://127.0.0.1:\(PACServerPort)/proxy.pac";
 
+main(CommandLine.arguments)
 
-func main(_ args: [String]) ->Int{
-        
+func main(_ args: [String]){
+        print("============> start")
         if (args.count != 2) {
                 NSLog("Usage: SystemConfig [version]/[disable, pac global]>");
-                return 1;
+                return;
         }
         
         if (strncmp(args[1], "version", strlen("version")) == 0) {
@@ -30,7 +31,7 @@ func main(_ args: [String]) ->Int{
         var  isGlobal = false
         var on =  false
         if (strncmp(args[1], "pac", strlen("pac")) == 0){
-                isGlobal = true;
+                isGlobal = false;
                 on = true
         }else if ((strncmp(args[1], "global", strlen("global")) == 0)){
                 isGlobal = true;
@@ -44,22 +45,22 @@ func main(_ args: [String]) ->Int{
         let osStatus = AuthorizationCreate(nil, nil, authFlags, &authRef)
         if osStatus != errAuthorizationSuccess{
                 NSLog(osStatus.description)
-                return 1;
+                return;
         }
         
         if authRef == nil{
                 NSLog("grant authoriation failed")
-                return 1
+                return
         }
         
         guard let prefRef = SCPreferencesCreateWithAuthorization(nil, "TheBigDipper" as CFString, nil, authRef)else{
                 NSLog("create preference failed")
-                return 1
+                return
         }
         
         guard let networkSets = SCPreferencesGetValue(prefRef, kSCPrefNetworkServices) else{
                 NSLog("no valid netowrk service setting")
-                return 1
+                return
         }
         
         for key in networkSets.allKeys {
@@ -118,5 +119,4 @@ func main(_ args: [String]) ->Int{
         AuthorizationFree(authRef!, AuthorizationFlags())
         
         NSLog("System proxy set result commitRet=\(commitRet), applyRet=\(applyRet)");
-        return 0
 }
