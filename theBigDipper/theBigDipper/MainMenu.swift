@@ -47,6 +47,8 @@ class MainMenu: NSObject {
                 quitMenuItem.target = self
                 
                 menu.addItem(quitMenuItem)
+                
+                AppSetting.initSettting()
                 return menu
         }
         
@@ -61,6 +63,6 @@ class MainMenu: NSObject {
         
         @objc func setupNetwork(sender: NSMenuItem) {
                 
-                AppSetting.initSettting()
+                AppSetting.setupProxy(isGlobal: false, on: true)
         }
 }
