@@ -47,8 +47,6 @@ class MainMenu: NSObject {
                 quitMenuItem.target = self
                 
                 menu.addItem(quitMenuItem)
-                
-                AppSetting.initSettting()
                 return menu
         }
         

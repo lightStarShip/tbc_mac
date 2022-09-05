@@ -10,14 +10,17 @@ import CoreData
 import SimpleLib
 import SwiftyJSON
 import SystemConfiguration
+import SecurityInterface
 
 class AppSetting:NSObject{
         
         static let PACServerPort = 31087;
         static let ProxyLocalPort = 31080;
         static let kDefaultPacURL = "http://127.0.0.1:\(PACServerPort)/proxy.pac";
-        public static let systemProxyAuthRightName = "com.stars.tbd.mac-proxy"
-        static var authRef: AuthorizationRef? = nil
+        public static let systemProxyAuthRightName = "com.stars.tbd.mac-proxy_v4"
+        //        static var authRef: AuthorizationRef? = nil
+        
+        static let authorization = SFAuthorization.authorization() as! SFAuthorization
         
         
 #if DEBUG
@@ -27,10 +30,15 @@ class AppSetting:NSObject{
 #endif
         
         static let rightDefaultRule: [String:Any] = [
-         "key" : systemProxyAuthRightName,
-         "class" : "user",
-         "group" : "admin",
-         "version" : 1 ]
+                "key" : systemProxyAuthRightName,
+                
+                "allow-root": false,
+                "authenticate-user": true,
+                "class": "user",
+                "session-owner": true,
+                "shared": false,
+                "timeout": 0
+        ]
         
         public static let workQueue = DispatchQueue.init(label: "APP Work Queue", qos: .utility)
         
@@ -63,39 +71,36 @@ class AppSetting:NSObject{
         }
 }
 extension AppSetting{
+        
         static func initPref(){
-                let osStatus = AuthorizationCreate(nil, nil, [], &authRef)
-                if osStatus != errAuthorizationSuccess{
-                        NSLog(osStatus.description)
-                        return;
-                }
-        }
-        static func setupProxy(isGlobal:Bool, on:Bool){
-                
+
                 let rightName = AppSetting.systemProxyAuthRightName
                 var currentRight:CFDictionary?
                 var  status = AuthorizationRightGet((rightName as NSString).utf8String! , &currentRight)
                 if (status == errAuthorizationDenied) {
-                        status = AuthorizationRightSet(authRef!, (rightName as NSString).utf8String!, rightDefaultRule as CFDictionary, "Change system proxy settings." as CFString, nil, "Common" as CFString)
+                        status = AuthorizationRightSet(authorization.authorizationRef()!, (rightName as NSString).utf8String!, rightDefaultRule as CFDictionary, "Change system proxy settings." as CFString, nil, "Common" as CFString)
                         if (status != errAuthorizationSuccess) {
                                 NSLog("AuthorizationRightSet failed")
                                 return
                         }
                 }
                 
-                var authItem = AuthorizationItem(name: (rightName as NSString).utf8String!, valueLength: 0, value:UnsafeMutableRawPointer(bitPattern: 0), flags: 0)
-                var authRight: AuthorizationRights = AuthorizationRights(count: 1, items:&authItem)
-                
-                let authFlags:AuthorizationFlags = [.extendRights , .interactionAllowed ,.preAuthorize, .partialRights]
-                let copyRightStatus = AuthorizationCopyRights(authRef!, &authRight, nil, authFlags, nil)
-                
-                Swift.print("AuthorizationCopyRights result: \(copyRightStatus), right name: \(rightName)")
-                guard (copyRightStatus == errAuthorizationSuccess) else{
-                        NSLog("grant authoriation failed")
-                        return
+                var authItem = AuthorizationItem(name: (rightName as NSString).utf8String!,
+                                                 valueLength: 0,
+                                                 value:UnsafeMutableRawPointer(bitPattern: 0),
+                                                 flags: 0)
+                var authRights = AuthorizationRights(count:1, items: &authItem)
+                do{
+                        let authFlags:AuthorizationFlags = [.extendRights , .interactionAllowed ,.preAuthorize, .partialRights]
+                        try authorization.obtain(withRights: &authRights, flags: authFlags, environment: nil,authorizedRights: nil)
+                }catch let err{
+                        NSLog(err.localizedDescription)
                 }
+        }
+        
+        static func setupProxy(isGlobal:Bool, on:Bool){
                 
-                guard let prefRef = SCPreferencesCreateWithAuthorization(kCFAllocatorDefault, "TheBigDipper" as CFString, nil, authRef)else{
+                guard let prefRef = SCPreferencesCreateWithAuthorization(kCFAllocatorDefault, "TheBigDipper" as CFString, nil, authorization.authorizationRef()!)else{
                         NSLog("create preference failed")
                         return
                 }
@@ -157,7 +162,7 @@ extension AppSetting{
                 let applyRet = SCPreferencesApplyChanges(prefRef)
                 SCPreferencesSynchronize(prefRef)
                 
-//                AuthorizationFree(authRef!, AuthorizationFlags())
+                //                AuthorizationFree(authRef!, AuthorizationFlags())
                 
                 NSLog("System proxy set result commitRet=\(commitRet), applyRet=\(applyRet)");
         }
