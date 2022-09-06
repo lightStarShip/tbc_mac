@@ -62,16 +62,18 @@ class MainMenu: NSObject {
         @objc func setupNetwork(sender: NSMenuItem) {
                 if AppSetting.proxyIsOn(){
                         if let err = AppSetting.setupProxy(on: false){
-                                //TODO::show tips
+                                dialogOK(question: "Error".localized, text: "setup proxy failed".localized)
+                                print("------>>> setupProxy:\(err.localizedDescription)")
                                 return
                         }
-                        sender.title = "Turn On"
+                        sender.title = "Turn On".localized
                         return
                 }
                 if let err = AppSetting.setupProxy(on: true){
-                        //TODO::show tips
+                        dialogOK(question: "Error".localized, text: "setup proxy failed".localized)
+                        print("------>>> setupProxy:\(err.localizedDescription)")
                         return
                 }
-                sender.title = "Turn Off"
+                sender.title = "Turn Off".localized
         }
 }

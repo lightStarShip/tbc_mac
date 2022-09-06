@@ -1,9 +1,45 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="false" userDefinedModelVersionIdentifier="">
-    <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
-        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21G83" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CDAppSetting" representedClassName="CDAppSetting" syncable="YES" codeGenerationType="class">
+        <attribute name="adListData" optional="YES" attributeType="Binary"/>
+        <attribute name="adUpdateTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="minerAddrInUsed" optional="YES" attributeType="String"/>
+        <attribute name="stream" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="CDNode" representedClassName="CDNode" syncable="YES" codeGenerationType="class">
+        <attribute name="addr" optional="YES" attributeType="String"/>
+        <attribute name="host" optional="YES" attributeType="String"/>
+        <attribute name="ping" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="CDRuleVersion" representedClassName="CDRuleVersion" syncable="YES" codeGenerationType="class">
+        <attribute name="dnsStr" optional="YES" attributeType="String"/>
+        <attribute name="dnsVer" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="dollarSign" optional="YES" attributeType="String"/>
+        <attribute name="ipStr" optional="YES" attributeType="String"/>
+        <attribute name="ipVer" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="mustStr" optional="YES" attributeType="String"/>
+        <attribute name="mustVer" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="nodeStr" optional="YES" attributeType="String"/>
+        <attribute name="nodeVer" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="priceStr" optional="YES" attributeType="String"/>
+        <attribute name="priceVer" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="CDStripe" representedClassName="CDStripe" syncable="YES" codeGenerationType="class">
+        <attribute name="customerID" optional="YES" attributeType="String"/>
+        <attribute name="expireDay" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="updateTime" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="walletAddr" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="CDWallet" representedClassName="CDWallet" syncable="YES" codeGenerationType="class">
+        <attribute name="address" optional="YES" attributeType="String"/>
+        <attribute name="subAddress" optional="YES" attributeType="String"/>
+        <attribute name="walletJSON" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="Item" positionX="-63" positionY="-18" width="128" height="44"/>
+        <element name="CDRuleVersion" positionX="-63" positionY="-9" width="128" height="194"/>
+        <element name="CDAppSetting" positionX="-54" positionY="81" width="128" height="89"/>
+        <element name="CDStripe" positionX="-36" positionY="90" width="128" height="89"/>
+        <element name="CDWallet" positionX="-18" positionY="99" width="128" height="74"/>
+        <element name="CDNode" positionX="0" positionY="108" width="128" height="74"/>
     </elements>
 </model>

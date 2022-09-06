@@ -35,3 +35,18 @@ func dialogOK(question: String, text: String) -> Void {DispatchQueue.main.async 
         alert.runModal()
         }
 }
+
+func dialogOKCancel(question: String, text: String) -> Bool {
+        let alert = NSAlert()
+        alert.messageText = question.localized
+        alert.informativeText = text.localized
+        alert.alertStyle = .warning
+        alert.addButton(withTitle: "OK".localized)
+        alert.addButton(withTitle: "Cancel".localized)
+        return alert.runModal() == .alertFirstButtonReturn
+}
+
+
+public func PostNoti(_ namedNoti:Notification.Name, data:String? = nil){
+        NotificationCenter.default.post(name: namedNoti, object: nil, userInfo: ["data":data ?? ""])
+}

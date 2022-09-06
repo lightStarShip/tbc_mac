@@ -14,6 +14,13 @@
 		6955EDE928ABD87400F50E3F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6955EDE828ABD87400F50E3F /* Persistence.swift */; };
 		6955EDEC28ABD87400F50E3F /* theBigDipper.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6955EDEA28ABD87400F50E3F /* theBigDipper.xcdatamodeld */; };
 		6955EDF528ABDEE800F50E3F /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6955EDF428ABDEE800F50E3F /* MainMenu.swift */; };
+		69A24F7928C72A0900156CE3 /* RuleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A24F7828C72A0900156CE3 /* RuleManager.swift */; };
+		69A24F7C28C72DFC00156CE3 /* NodeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A24F7A28C72DFC00156CE3 /* NodeItem.swift */; };
+		69A24F7D28C72DFC00156CE3 /* PriceItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A24F7B28C72DFC00156CE3 /* PriceItem.swift */; };
+		69A24F8128C72E7000156CE3 /* must_hit.txt in Resources */ = {isa = PBXBuildFile; fileRef = 69A24F7E28C72E7000156CE3 /* must_hit.txt */; };
+		69A24F8228C72E7000156CE3 /* bypass2.txt in Resources */ = {isa = PBXBuildFile; fileRef = 69A24F7F28C72E7000156CE3 /* bypass2.txt */; };
+		69A24F8328C72E7000156CE3 /* rule.txt in Resources */ = {isa = PBXBuildFile; fileRef = 69A24F8028C72E7000156CE3 /* rule.txt */; };
+		69A24F8528C73BB900156CE3 /* Stripe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A24F8428C73BB900156CE3 /* Stripe.swift */; };
 		69AAA8D028BF387E003E5BE1 /* GCDWebServers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69AAA8CF28BF387E003E5BE1 /* GCDWebServers.framework */; };
 		69AAA8D128BF387E003E5BE1 /* GCDWebServers.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 69AAA8CF28BF387E003E5BE1 /* GCDWebServers.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		69DD56E028C5E4D200A464FA /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69DD56DF28C5E4D200A464FA /* Security.framework */; };
@@ -77,8 +84,14 @@
 		6955EDED28ABD87400F50E3F /* theBigDipper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = theBigDipper.entitlements; sourceTree = "<group>"; };
 		6955EDF328ABD96800F50E3F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		6955EDF428ABDEE800F50E3F /* MainMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
+		69A24F7828C72A0900156CE3 /* RuleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleManager.swift; sourceTree = "<group>"; };
+		69A24F7A28C72DFC00156CE3 /* NodeItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeItem.swift; sourceTree = "<group>"; };
+		69A24F7B28C72DFC00156CE3 /* PriceItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceItem.swift; sourceTree = "<group>"; };
+		69A24F7E28C72E7000156CE3 /* must_hit.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = must_hit.txt; sourceTree = "<group>"; };
+		69A24F7F28C72E7000156CE3 /* bypass2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bypass2.txt; sourceTree = "<group>"; };
+		69A24F8028C72E7000156CE3 /* rule.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rule.txt; sourceTree = "<group>"; };
+		69A24F8428C73BB900156CE3 /* Stripe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stripe.swift; sourceTree = "<group>"; };
 		69AAA8CF28BF387E003E5BE1 /* GCDWebServers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GCDWebServers.framework; path = theBigDipper/Carthage/Build/Mac/GCDWebServers.framework; sourceTree = "<group>"; };
-		69AABECD28C4C26B00316D83 /* AppErr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppErr.swift; sourceTree = "<group>"; };
 		69DD56DF28C5E4D200A464FA /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		69DD56E128C5E51E00A464FA /* SecurityFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityFoundation.framework; path = System/Library/Frameworks/SecurityFoundation.framework; sourceTree = SDKROOT; };
 		69DD56E328C5E52A00A464FA /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -177,9 +190,15 @@
 		69F6898128BC77F500968917 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				69A24F8428C73BB900156CE3 /* Stripe.swift */,
+				69A24F7A28C72DFC00156CE3 /* NodeItem.swift */,
+				69A24F7B28C72DFC00156CE3 /* PriceItem.swift */,
+				69A24F7828C72A0900156CE3 /* RuleManager.swift */,
+				69A24F7F28C72E7000156CE3 /* bypass2.txt */,
+				69A24F7E28C72E7000156CE3 /* must_hit.txt */,
+				69A24F8028C72E7000156CE3 /* rule.txt */,
 				69E2B27328BE0125002E23B5 /* gfw.js */,
 				69F6898228BC781500968917 /* AppSetting.swift */,
-				69AABECD28C4C26B00316D83 /* AppErr.swift */,
 				69F6899B28BCE76000968917 /* AppConst.swift */,
 				69F6899328BCCD9700968917 /* utils.swift */,
 				69E2B25C28BDE814002E23B5 /* AppErr.swift */,
@@ -283,9 +302,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				69F6899628BCD0F900968917 /* Cartfile in Resources */,
+				69A24F8228C72E7000156CE3 /* bypass2.txt in Resources */,
 				6955EDE728ABD87400F50E3F /* Preview Assets.xcassets in Resources */,
+				69A24F8128C72E7000156CE3 /* must_hit.txt in Resources */,
 				6955EDE428ABD87400F50E3F /* Assets.xcassets in Resources */,
 				69E2B27428BE0125002E23B5 /* gfw.js in Resources */,
+				69A24F8328C72E7000156CE3 /* rule.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,15 +318,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69A24F8528C73BB900156CE3 /* Stripe.swift in Sources */,
+				69A24F7D28C72DFC00156CE3 /* PriceItem.swift in Sources */,
 				6955EDF528ABDEE800F50E3F /* MainMenu.swift in Sources */,
 				69F6899C28BCE76000968917 /* AppConst.swift in Sources */,
 				69F6899428BCCD9700968917 /* utils.swift in Sources */,
 				6955EDEC28ABD87400F50E3F /* theBigDipper.xcdatamodeld in Sources */,
 				69F6898328BC781500968917 /* AppSetting.swift in Sources */,
 				6955EDE928ABD87400F50E3F /* Persistence.swift in Sources */,
+				69A24F7C28C72DFC00156CE3 /* NodeItem.swift in Sources */,
 				6955EDE228ABD87200F50E3F /* ContentView.swift in Sources */,
 				69E2B25D28BDE814002E23B5 /* AppErr.swift in Sources */,
 				6955EDE028ABD87200F50E3F /* theBigDipperApp.swift in Sources */,
+				69A24F7928C72A0900156CE3 /* RuleManager.swift in Sources */,
 				69E2B27228BDFC4B002E23B5 /* PacServer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

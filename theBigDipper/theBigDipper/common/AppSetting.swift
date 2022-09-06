@@ -22,6 +22,7 @@ class AppSetting:NSObject{
         
         static let authorization = SFAuthorization.authorization() as! SFAuthorization
         
+        static var coreData:CDAppSetting?
         
 #if DEBUG
         public static var StripeDebugMode:Int8 = 1
@@ -66,12 +67,30 @@ class AppSetting:NSObject{
         }
         
         static func initSettting(){
+                
+                var setting = PersistenceController.shared.findOneEntity(AppConstants.DBNAME_APPSETTING) as? CDAppSetting
+                if setting == nil{
+                        setting = CDAppSetting(context: PersistenceController.shared.container.viewContext)
+                        setting!.minerAddrInUsed = nil
+                        setting!.stream = true
+                        
+                        AppSetting.coreData = setting
+                        
+                        PersistenceController.shared.saveContext()
+                        return
+                }
+                
+                AppSetting.coreData = setting
+                
+                
                 InitLib(AppSetting.StripeDebugMode,
                         LogLevel.debug.rawValue,
                         AppConstants.ConfigUrl.toGoString(),
                         "".toGoString(),
                         systemCallBack,
                         uiLog)
+                
+                
                 initAuthorization()
                 print("---------------->>>>")
         }
