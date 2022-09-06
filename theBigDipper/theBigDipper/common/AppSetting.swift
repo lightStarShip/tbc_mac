@@ -14,9 +14,9 @@ import SecurityInterface
 
 class AppSetting:NSObject{
         
-        static let PACServerPort = 31087;
+//        static let PACServerPort = 31087;
         static let ProxyLocalPort = 31080;
-        static let kDefaultPacURL = "http://127.0.0.1:\(PACServerPort)/proxy.pac";
+//        static let kDefaultPacURL = "http://127.0.0.1:\(PACServerPort)/proxy.pac";
         public static let systemProxyAuthRightName = "com.stars.tbd.mac-proxy_v4"
         //        static var authRef: AuthorizationRef? = nil
         
@@ -39,6 +39,15 @@ class AppSetting:NSObject{
                 "shared": false,
                 "timeout": 0
         ]
+
+        
+        enum LogLevel:Int8{
+                case debug = 0
+                case info = 1
+                case warn = 2
+                case error = 3
+        }
+        
         
         public static let workQueue = DispatchQueue.init(label: "APP Work Queue", qos: .utility)
         
@@ -57,23 +66,44 @@ class AppSetting:NSObject{
         }
         
         static func initSettting(){
-                InitLib(AppSetting.StripeDebugMode,AppConstants.ConfigUrl.toGoString(), systemCallBack,uiLog)
-                initPref()
+                InitLib(AppSetting.StripeDebugMode,
+                        LogLevel.debug.rawValue,
+                        AppConstants.ConfigUrl.toGoString(),
+                        "".toGoString(),
+                        systemCallBack,
+                        uiLog)
+                initAuthorization()
                 print("---------------->>>>")
         }
         
         static func callback(withJson:String){
-                let json = JSON(parseJSON: withJson)
+//                let json = JSON(parseJSON: withJson)
         }
         
         static func log(_ str:String){
                 NSLog("\(str)")
         }
+        
+        
+        static func setupProxy(on:Bool) -> Error?{
+                setupProxySetting(on:on)
+                if let err = StartProxy("127.0.0.1:\(ProxyLocalPort)".toGoString()){
+                        return AppErr.lib(String(cString: err))
+                }
+                
+                return nil
+        }
+        
+        static func proxyIsOn() -> Bool{
+                return ProxyStatus() == 1
+        }
 }
+
+
 extension AppSetting{
         
-        static func initPref(){
-
+        static func initAuthorization(){
+                
                 let rightName = AppSetting.systemProxyAuthRightName
                 var currentRight:CFDictionary?
                 var  status = AuthorizationRightGet((rightName as NSString).utf8String! , &currentRight)
@@ -89,7 +119,11 @@ extension AppSetting{
                                                  valueLength: 0,
                                                  value:UnsafeMutableRawPointer(bitPattern: 0),
                                                  flags: 0)
-                var authRights = AuthorizationRights(count:1, items: &authItem)
+                var authRights = AuthorizationRights(count:1, items: withUnsafeMutablePointer(to:&authItem){
+                        p in
+                        return p
+                })
+                
                 do{
                         let authFlags:AuthorizationFlags = [.extendRights , .interactionAllowed ,.preAuthorize, .partialRights]
                         try authorization.obtain(withRights: &authRights, flags: authFlags, environment: nil,authorizedRights: nil)
@@ -97,8 +131,7 @@ extension AppSetting{
                         NSLog(err.localizedDescription)
                 }
         }
-        
-        static func setupProxy(isGlobal:Bool, on:Bool){
+        static func setupProxySetting(on:Bool){
                 
                 guard let prefRef = SCPreferencesCreateWithAuthorization(kCFAllocatorDefault, "TheBigDipper" as CFString, nil, authorization.authorizationRef()!)else{
                         NSLog("create preference failed")
@@ -113,38 +146,25 @@ extension AppSetting{
                 var proxySettings: [String:AnyObject] = [:]
                 
                 if on{
-                        if isGlobal{
-                                proxySettings[kCFNetworkProxiesSOCKSProxy as String] = "127.0.0.1" as AnyObject
-                                proxySettings[kCFNetworkProxiesSOCKSPort as String] = ProxyLocalPort as AnyObject
-                                proxySettings[kCFNetworkProxiesSOCKSEnable as String] = 1 as AnyObject
-                        }else{
-                                proxySettings[kCFNetworkProxiesProxyAutoConfigURLString as String] = kDefaultPacURL as AnyObject
-                                proxySettings[kCFNetworkProxiesProxyAutoConfigEnable as String] = 1 as AnyObject
-                        }
+                        proxySettings[kCFNetworkProxiesSOCKSProxy as String] = "127.0.0.1" as AnyObject
+                        proxySettings[kCFNetworkProxiesSOCKSPort as String] = ProxyLocalPort as AnyObject
+                        proxySettings[kCFNetworkProxiesSOCKSEnable as String] = 1 as AnyObject
+                        proxySettings[kCFNetworkProxiesExceptionsList as String] = [
+                                "192.168.0.0/16",
+                                "10.0.0.0/8",
+                                "172.16.0.0/12",
+                                "127.0.0.1",
+                                "localhost",
+                                "*.local"
+                        ] as AnyObject
                         
                 }else{
-                        proxySettings[kCFNetworkProxiesProxyAutoConfigEnable as String] = 0 as AnyObject
-                        proxySettings[kCFNetworkProxiesProxyAutoConfigURLString as String] = "" as AnyObject
-                        
-                        proxySettings[kCFNetworkProxiesHTTPEnable as String] = 0 as AnyObject
-                        proxySettings[kCFNetworkProxiesHTTPSEnable as String] = 0 as AnyObject
-                        
                         proxySettings[kCFNetworkProxiesSOCKSEnable as String] = 0 as AnyObject
                         proxySettings[kCFNetworkProxiesSOCKSProxy as String] = "" as AnyObject
                         proxySettings[kCFNetworkProxiesSOCKSPort as String] = 0 as AnyObject
-                        
                         proxySettings[kCFNetworkProxiesExceptionsList as String] = [] as AnyObject
                 }
                 
-                
-                proxySettings[kCFNetworkProxiesExceptionsList as String] = [
-                        "192.168.0.0/16",
-                        "10.0.0.0/8",
-                        "172.16.0.0/12",
-                        "127.0.0.1",
-                        "localhost",
-                        "*.local"
-                ] as AnyObject
                 
                 for key in networkSets.allKeys {
                         let dict = networkSets.object(forKey: key) as? NSDictionary

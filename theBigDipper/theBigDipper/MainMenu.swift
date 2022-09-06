@@ -60,7 +60,18 @@ class MainMenu: NSObject {
         
         
         @objc func setupNetwork(sender: NSMenuItem) {
-                
-                AppSetting.setupProxy(isGlobal: false, on: true)
+                if AppSetting.proxyIsOn(){
+                        if let err = AppSetting.setupProxy(on: false){
+                                //TODO::show tips
+                                return
+                        }
+                        sender.title = "Turn On"
+                        return
+                }
+                if let err = AppSetting.setupProxy(on: true){
+                        //TODO::show tips
+                        return
+                }
+                sender.title = "Turn Off"
         }
 }

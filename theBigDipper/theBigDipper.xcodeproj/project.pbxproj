@@ -16,7 +16,6 @@
 		6955EDF528ABDEE800F50E3F /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6955EDF428ABDEE800F50E3F /* MainMenu.swift */; };
 		69AAA8D028BF387E003E5BE1 /* GCDWebServers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69AAA8CF28BF387E003E5BE1 /* GCDWebServers.framework */; };
 		69AAA8D128BF387E003E5BE1 /* GCDWebServers.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 69AAA8CF28BF387E003E5BE1 /* GCDWebServers.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		69AABECE28C4C26B00316D83 /* AppErr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69AABECD28C4C26B00316D83 /* AppErr.swift */; };
 		69DD56E028C5E4D200A464FA /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69DD56DF28C5E4D200A464FA /* Security.framework */; };
 		69DD56E228C5E51E00A464FA /* SecurityFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69DD56E128C5E51E00A464FA /* SecurityFoundation.framework */; };
 		69DD56E428C5E52A00A464FA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69DD56E328C5E52A00A464FA /* Cocoa.framework */; };
@@ -305,7 +304,6 @@
 				6955EDE928ABD87400F50E3F /* Persistence.swift in Sources */,
 				6955EDE228ABD87200F50E3F /* ContentView.swift in Sources */,
 				69E2B25D28BDE814002E23B5 /* AppErr.swift in Sources */,
-				69AABECE28C4C26B00316D83 /* AppErr.swift in Sources */,
 				6955EDE028ABD87200F50E3F /* theBigDipperApp.swift in Sources */,
 				69E2B27228BDFC4B002E23B5 /* PacServer.swift in Sources */,
 			);
