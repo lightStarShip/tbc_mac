@@ -14,13 +14,13 @@ import SecurityInterface
 
 class AppSetting:NSObject{
         
-//        static let PACServerPort = 31087;
+        //        static let PACServerPort = 31087;
         static let ProxyLocalPort = 31080;
-//        static let kDefaultPacURL = "http://127.0.0.1:\(PACServerPort)/proxy.pac";
-        public static let systemProxyAuthRightName = "com.stars.tbd.mac-proxy_v4"
-        //        static var authRef: AuthorizationRef? = nil
+        //        static let kDefaultPacURL = "http://127.0.0.1:\(PACServerPort)/proxy.pac";
+        public static let systemProxyAuthRightName = "com.stars.tbd.mac-proxy_v7"
+        static var authRef: AuthorizationRef? = nil
         
-        static let authorization = SFAuthorization.authorization() as! SFAuthorization
+        //        static let authorization = SFAuthorization.authorization() as! SFAuthorization
         
         static var coreData:CDAppSetting?
         
@@ -32,15 +32,11 @@ class AppSetting:NSObject{
         
         static let rightDefaultRule: [String:Any] = [
                 "key" : systemProxyAuthRightName,
-                
-                "allow-root": false,
-                "authenticate-user": true,
-                "class": "user",
-                "session-owner": true,
-                "shared": false,
-                "timeout": 0
-        ]
-
+                "class" : "user",
+                "group" : "admin",
+                "version" : 1 ,
+                "timeout": 0]
+        
         
         enum LogLevel:Int8{
                 case debug = 0
@@ -94,7 +90,7 @@ class AppSetting:NSObject{
         }
         
         static func callback(withJson:String){
-//                let json = JSON(parseJSON: withJson)
+                //                let json = JSON(parseJSON: withJson)
         }
         
         static func log(_ str:String){
@@ -123,16 +119,20 @@ class AppSetting:NSObject{
 
 extension AppSetting{
         
-        static func initAuthorization(){
+        static func initAuthorization() -> Error?{
+                var status = AuthorizationCreate(nil, nil, AuthorizationFlags(), &authRef)
+                if status != errAuthorizationSuccess{
+                        return AppErr.system("create authRef failed")
+                }
+               
                 
                 let rightName = AppSetting.systemProxyAuthRightName
                 var currentRight:CFDictionary?
-                var  status = AuthorizationRightGet((rightName as NSString).utf8String! , &currentRight)
+                  status = AuthorizationRightGet((rightName as NSString).utf8String! , &currentRight)
                 if (status == errAuthorizationDenied) {
-                        status = AuthorizationRightSet(authorization.authorizationRef()!, (rightName as NSString).utf8String!, rightDefaultRule as CFDictionary, "Change system proxy settings." as CFString, nil, "Common" as CFString)
+                        status = AuthorizationRightSet(authRef!, (rightName as NSString).utf8String!, rightDefaultRule as CFDictionary, "Change system proxy settings." as CFString, nil, "Common" as CFString)
                         if (status != errAuthorizationSuccess) {
-                                NSLog("AuthorizationRightSet failed")
-                                return
+                                return AppErr.system("AuthorizationRightSet failed")
                         }
                 }
                 
@@ -145,16 +145,18 @@ extension AppSetting{
                         return p
                 })
                 
-                do{
-                        let authFlags:AuthorizationFlags = [.extendRights , .interactionAllowed ,.preAuthorize, .partialRights]
-                        try authorization.obtain(withRights: &authRights, flags: authFlags, environment: nil,authorizedRights: nil)
-                }catch let err{
-                        NSLog(err.localizedDescription)
+                let authFlags:AuthorizationFlags = [.extendRights , .interactionAllowed, .preAuthorize, .partialRights]
+                status = AuthorizationCopyRights(authRef!, &authRights, nil,authFlags, nil);
+                if (status == errAuthorizationSuccess) {
+                    return AppErr.system("AuthorizationCopyRights failed")
                 }
+                return nil
+                
         }
+        
         static func setupProxySetting(on:Bool){
                 
-                guard let prefRef = SCPreferencesCreateWithAuthorization(kCFAllocatorDefault, "TheBigDipper" as CFString, nil, authorization.authorizationRef()!)else{
+                guard let prefRef = SCPreferencesCreateWithAuthorization(kCFAllocatorDefault, "TheBigDipper" as CFString, nil, authRef!)else{
                         NSLog("create preference failed")
                         return
                 }
