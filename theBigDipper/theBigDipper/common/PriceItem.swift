@@ -46,7 +46,7 @@ class PriceItem:NSObject{
         }
         
         public static func pricePopulate(jsonStr:String?,needNoti:Bool=false){
-                guard let str = jsonStr else{
+                guard let str = jsonStr, !str.isEmpty else{
                         return
                 }
                 items.removeAll()

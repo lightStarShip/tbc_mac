@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		6955EDE028ABD87200F50E3F /* theBigDipperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6955EDDF28ABD87200F50E3F /* theBigDipperApp.swift */; };
-		6955EDE228ABD87200F50E3F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6955EDE128ABD87200F50E3F /* ContentView.swift */; };
 		6955EDE428ABD87400F50E3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6955EDE328ABD87400F50E3F /* Assets.xcassets */; };
 		6955EDE728ABD87400F50E3F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6955EDE628ABD87400F50E3F /* Preview Assets.xcassets */; };
 		6955EDE928ABD87400F50E3F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6955EDE828ABD87400F50E3F /* Persistence.swift */; };
@@ -76,7 +75,6 @@
 /* Begin PBXFileReference section */
 		6955EDDC28ABD87200F50E3F /* theBigDipper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = theBigDipper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6955EDDF28ABD87200F50E3F /* theBigDipperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = theBigDipperApp.swift; sourceTree = "<group>"; };
-		6955EDE128ABD87200F50E3F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		6955EDE328ABD87400F50E3F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6955EDE628ABD87400F50E3F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6955EDE828ABD87400F50E3F /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -161,7 +159,6 @@
 				6955EDF328ABD96800F50E3F /* Info.plist */,
 				6955EDDF28ABD87200F50E3F /* theBigDipperApp.swift */,
 				6955EDF428ABDEE800F50E3F /* MainMenu.swift */,
-				6955EDE128ABD87200F50E3F /* ContentView.swift */,
 				6955EDE328ABD87400F50E3F /* Assets.xcassets */,
 				6955EDE828ABD87400F50E3F /* Persistence.swift */,
 				6955EDED28ABD87400F50E3F /* theBigDipper.entitlements */,
@@ -327,7 +324,6 @@
 				69F6898328BC781500968917 /* AppSetting.swift in Sources */,
 				6955EDE928ABD87400F50E3F /* Persistence.swift in Sources */,
 				69A24F7C28C72DFC00156CE3 /* NodeItem.swift in Sources */,
-				6955EDE228ABD87200F50E3F /* ContentView.swift in Sources */,
 				69E2B25D28BDE814002E23B5 /* AppErr.swift in Sources */,
 				6955EDE028ABD87200F50E3F /* theBigDipperApp.swift in Sources */,
 				69A24F7928C72A0900156CE3 /* RuleManager.swift in Sources */,

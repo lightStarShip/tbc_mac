@@ -45,13 +45,12 @@ class RuleManager:NSObject{
                 PriceItem.pricePopulate(jsonStr:rVer?.priceStr)
                 
                 AppSetting.workQueue.async {
-                        
-                        guard let verJson = RuleVerInt() else{
+                        guard let verData = RuleVerInt() else{
                                 NSLog("------>>>load rule version faile")
                                 return
                         }
-                        
-                        let jsonVer = JSON(verJson)
+                        let version = String(cString: verData)
+                        let jsonVer = JSON(parseJSON: version)
                         let dns_ver = jsonVer["dns"].int32 ?? -1
                         let ip_ver = jsonVer["by_pass"].int32 ?? -1
                         let must_ver = jsonVer["must_hit"].int32 ?? -1
@@ -125,7 +124,7 @@ class RuleManager:NSObject{
                         NSLog("------>>>failed to read  \(name) txt")
                         return ""
                 }
-                NSLog("------>>>rule contents:\(contents)")
+                NSLog("------>>>rule contents:\(contents.count)")
                 return contents
         }
 }

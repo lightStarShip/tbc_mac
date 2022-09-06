@@ -67,22 +67,6 @@ class AppSetting:NSObject{
         }
         
         static func initSettting(){
-                
-                var setting = PersistenceController.shared.findOneEntity(AppConstants.DBNAME_APPSETTING) as? CDAppSetting
-                if setting == nil{
-                        setting = CDAppSetting(context: PersistenceController.shared.container.viewContext)
-                        setting!.minerAddrInUsed = nil
-                        setting!.stream = true
-                        
-                        AppSetting.coreData = setting
-                        
-                        PersistenceController.shared.saveContext()
-                        return
-                }
-                
-                AppSetting.coreData = setting
-                
-                
                 InitLib(AppSetting.StripeDebugMode,
                         LogLevel.debug.rawValue,
                         AppConstants.ConfigUrl.toGoString(),
@@ -90,8 +74,22 @@ class AppSetting:NSObject{
                         systemCallBack,
                         uiLog)
                 
+                var setting = PersistenceController.shared.findOneEntity(AppConstants.DBNAME_APPSETTING) as? CDAppSetting
+                if setting == nil{
+                        setting = CDAppSetting(context: PersistenceController.shared.container.viewContext)
+                        setting!.minerAddrInUsed = nil
+                        setting!.stream = true
+                        
+                        PersistenceController.shared.saveContext()
+                }
+                
+                AppSetting.coreData = setting
+                
+                
+                RuleManager.rInst.loadRulsByVersion()
                 
                 initAuthorization()
+                
                 print("---------------->>>>")
         }
         
@@ -106,8 +104,12 @@ class AppSetting:NSObject{
         
         static func setupProxy(on:Bool) -> Error?{
                 setupProxySetting(on:on)
-                if let err = StartProxy("127.0.0.1:\(ProxyLocalPort)".toGoString()){
-                        return AppErr.lib(String(cString: err))
+                if on{
+                        if let err = StartProxy("127.0.0.1:\(ProxyLocalPort)".toGoString()){
+                                return AppErr.lib(String(cString: err))
+                        }
+                }else{
+                        StopProxy()
                 }
                 
                 return nil
