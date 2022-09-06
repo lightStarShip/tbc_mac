@@ -127,4 +127,8 @@ class RuleManager:NSObject{
                 NSLog("------>>>rule contents:\(contents.count)")
                 return contents
         }
+        
+        func domainStr()->String{
+                return coreData?.dnsStr ?? ""
+        }
 }

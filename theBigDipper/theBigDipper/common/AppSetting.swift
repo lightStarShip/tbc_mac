@@ -66,7 +66,6 @@ class AppSetting:NSObject{
                 InitLib(AppSetting.StripeDebugMode,
                         LogLevel.debug.rawValue,
                         AppConstants.ConfigUrl.toGoString(),
-                        "".toGoString(),
                         systemCallBack,
                         uiLog)
                 
@@ -84,9 +83,10 @@ class AppSetting:NSObject{
                 
                 RuleManager.rInst.loadRulsByVersion()
                 
-                initAuthorization()
+                if let err = initAuthorization(){
+                        print("------>>>", err.localizedDescription)
+                }
                 
-                print("---------------->>>>")
         }
         
         static func callback(withJson:String){
@@ -99,11 +99,27 @@ class AppSetting:NSObject{
         
         
         static func setupProxy(on:Bool) -> Error?{
+                
                 setupProxySetting(on:on)
+                
                 if on{
-                        if let err = StartProxy("127.0.0.1:\(ProxyLocalPort)".toGoString()){
+                        guard Wallet.WInst.SubAddress != nil else{
+                                return AppErr.wallet("import wallet please".localized)
+                        }
+                        
+                        let proxyAddr = "127.0.0.1:\(ProxyLocalPort)".toGoString()
+                        let node_addr = AppSetting.coreData?.minerAddrInUsed
+                        guard let node = NodeItem.GetNode(addr:node_addr) else{
+                                return AppErr.conf("no valid node")
+                        }
+                        
+                        let ip = node.ipStr.toGoString()
+                        let addr = node.wallet.toGoString()
+                        let rule = RuleManager.rInst.domainStr().toGoString()
+                        if let err = StartProxy(proxyAddr, ip, addr, rule){
                                 return AppErr.lib(String(cString: err))
                         }
+                        
                 }else{
                         StopProxy()
                 }
@@ -124,11 +140,11 @@ extension AppSetting{
                 if status != errAuthorizationSuccess{
                         return AppErr.system("create authRef failed")
                 }
-               
+                
                 
                 let rightName = AppSetting.systemProxyAuthRightName
                 var currentRight:CFDictionary?
-                  status = AuthorizationRightGet((rightName as NSString).utf8String! , &currentRight)
+                status = AuthorizationRightGet((rightName as NSString).utf8String! , &currentRight)
                 if (status == errAuthorizationDenied) {
                         status = AuthorizationRightSet(authRef!, (rightName as NSString).utf8String!, rightDefaultRule as CFDictionary, "Change system proxy settings." as CFString, nil, "Common" as CFString)
                         if (status != errAuthorizationSuccess) {
@@ -148,7 +164,7 @@ extension AppSetting{
                 let authFlags:AuthorizationFlags = [.extendRights , .interactionAllowed, .preAuthorize, .partialRights]
                 status = AuthorizationCopyRights(authRef!, &authRights, nil,authFlags, nil);
                 if (status == errAuthorizationSuccess) {
-                    return AppErr.system("AuthorizationCopyRights failed")
+                        return AppErr.system("AuthorizationCopyRights failed")
                 }
                 return nil
                 
@@ -208,5 +224,88 @@ extension AppSetting{
                 //                AuthorizationFree(authRef!, AuthorizationFlags())
                 
                 NSLog("System proxy set result commitRet=\(commitRet), applyRet=\(applyRet)");
+        }
+}
+
+extension AppSetting{
+        
+        static func save(password: String, service: String, account: String) ->Bool {
+                
+                let pData = password.data(using: .utf8)
+                let query: [String: AnyObject] = [
+                        // kSecAttrService,  kSecAttrAccount, and kSecClass
+                        // uniquely identify the item to save in Keychain
+                        kSecAttrService as String: service as AnyObject,
+                        kSecAttrAccount as String: account as AnyObject,
+                        kSecClass as String: kSecClassGenericPassword,
+                        
+                        // kSecValueData is the item value to save
+                        kSecValueData as String: pData as AnyObject
+                ]
+                
+                // SecItemAdd attempts to add the item identified by
+                // the query to keychain
+                let status = SecItemAdd(
+                        query as CFDictionary,
+                        nil
+                )
+                
+                
+                // Any status other than errSecSuccess indicates the
+                // save operation failed.
+                guard status == errSecSuccess else {
+                        print("------>>> oss save failed :=>", status)
+                        return false
+                }
+                return true
+        }
+        
+        static func readPassword(service: String, account: String) -> String? {
+                let query: [String: AnyObject] = [
+                        // kSecAttrService,  kSecAttrAccount, and kSecClass
+                        // uniquely identify the item to read in Keychain
+                        kSecAttrService as String: service as AnyObject,
+                        kSecAttrAccount as String: account as AnyObject,
+                        kSecClass as String: kSecClassGenericPassword,
+                        
+                        // kSecMatchLimitOne indicates keychain should read
+                        // only the most recent item matching this query
+                        kSecMatchLimit as String: kSecMatchLimitOne,
+                        
+                        // kSecReturnData is set to kCFBooleanTrue in order
+                        // to retrieve the data for the item
+                        kSecReturnData as String: kCFBooleanTrue
+                ]
+                
+                // SecItemCopyMatching will attempt to copy the item
+                // identified by query to the reference itemCopy
+                var itemCopy: AnyObject?
+                let status = SecItemCopyMatching(
+                        query as CFDictionary,
+                        &itemCopy
+                )
+                
+                // errSecItemNotFound is a special status indicating the
+                // read item does not exist. Throw itemNotFound so the
+                // client can determine whether or not to handle
+                // this case
+                guard status != errSecItemNotFound else {
+                        print("------>>> oss read failed :=>", status)
+                        return nil
+                }
+                
+                guard status == errSecSuccess else {
+                        print("------>>> oss read failed :=>", status)
+                        return nil
+                }
+                
+                // This implementation of KeychainInterface requires all
+                // items to be saved and read as Data. Otherwise,
+                // invalidItemFormat is thrown
+                guard let password = itemCopy as? Data else {
+                        print("------>>> oss read failed :=>", itemCopy as Any)
+                        return nil
+                }
+                return String(data: password, encoding: .utf8)
         }
 }

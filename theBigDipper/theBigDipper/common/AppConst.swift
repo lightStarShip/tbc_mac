@@ -11,10 +11,10 @@ public struct AppConstants {
         static public let DBNAME_WALLET = "CDWallet"
         static public let DBNAME_APPSETTING = "CDAppSetting"
         static public let DBNAME_Stripe = "CDStripe"
+        static public let SERVICE_NME_FOR_OSS = "com.star.thebigdipper"
         
         
         static public let ConfigUrl = "https://lightstarship.github.io"
-        
         
         static public let NOTI_NODE_LIST_UPDATE = Notification.Name("NOTI_NODE_LIST_UPDATE")
         static public let NOTI_PRICE_LIST_UPDATE = Notification.Name("NOTI_NODE_LIST_UPDATE")
