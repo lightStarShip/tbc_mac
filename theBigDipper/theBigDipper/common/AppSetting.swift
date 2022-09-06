@@ -103,10 +103,7 @@ class AppSetting:NSObject{
                 setupProxySetting(on:on)
                 
                 if on{
-                        guard Wallet.WInst.SubAddress != nil else{
-                                return AppErr.wallet("import wallet please".localized)
-                        }
-                        
+                                                
                         let proxyAddr = "127.0.0.1:\(ProxyLocalPort)".toGoString()
                         let node_addr = AppSetting.coreData?.minerAddrInUsed
                         guard let node = NodeItem.GetNode(addr:node_addr) else{
@@ -163,8 +160,8 @@ extension AppSetting{
                 
                 let authFlags:AuthorizationFlags = [.extendRights , .interactionAllowed, .preAuthorize, .partialRights]
                 status = AuthorizationCopyRights(authRef!, &authRights, nil,authFlags, nil);
-                if (status == errAuthorizationSuccess) {
-                        return AppErr.system("AuthorizationCopyRights failed")
+                if (status != errAuthorizationSuccess) {
+                        return AppErr.system("AuthorizationCopyRights failed:\(status)")
                 }
                 return nil
                 

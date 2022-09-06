@@ -10,7 +10,9 @@ import Cocoa
 import SwiftUI
 
 class MainMenu: NSObject {
+        
         let menu = NSMenu()
+        @Binding var pop: Bool?
         
         func build() ->NSMenu{
                 menu.addItem(NSMenuItem.separator())
