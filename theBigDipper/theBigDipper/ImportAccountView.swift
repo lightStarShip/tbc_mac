@@ -10,9 +10,18 @@ import SwiftUI
 struct ImportAccountView: View {
         var body: some View {
                 ZStack {
-                        Color.blue.frame(width: 500, height: 500)
-                        Text("Popup!")
-                }
+                        Color.blue.frame(width: 200, height: 200)
+                        VStack{
+                                
+                                Text("Popup!")
+                                
+                                Text("Popup!")
+                                Button("test") {
+                                        print("-------->")
+                                }
+                                Text("Popup!")
+                        }
+                }.frame(width: 200, height: 200, alignment: .leading)
         }
 }
 

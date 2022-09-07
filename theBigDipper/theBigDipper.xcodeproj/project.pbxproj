@@ -13,6 +13,7 @@
 		6955EDE928ABD87400F50E3F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6955EDE828ABD87400F50E3F /* Persistence.swift */; };
 		6955EDEC28ABD87400F50E3F /* theBigDipper.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6955EDEA28ABD87400F50E3F /* theBigDipper.xcdatamodeld */; };
 		6955EDF528ABDEE800F50E3F /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6955EDF428ABDEE800F50E3F /* MainMenu.swift */; };
+		699CB50728C8B780006E661E /* AccountWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699CB50528C8B780006E661E /* AccountWindow.swift */; };
 		69A24F7928C72A0900156CE3 /* RuleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A24F7828C72A0900156CE3 /* RuleManager.swift */; };
 		69A24F7C28C72DFC00156CE3 /* NodeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A24F7A28C72DFC00156CE3 /* NodeItem.swift */; };
 		69A24F7D28C72DFC00156CE3 /* PriceItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A24F7B28C72DFC00156CE3 /* PriceItem.swift */; };
@@ -84,6 +85,7 @@
 		6955EDED28ABD87400F50E3F /* theBigDipper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = theBigDipper.entitlements; sourceTree = "<group>"; };
 		6955EDF328ABD96800F50E3F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		6955EDF428ABDEE800F50E3F /* MainMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
+		699CB50528C8B780006E661E /* AccountWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountWindow.swift; sourceTree = "<group>"; };
 		69A24F7828C72A0900156CE3 /* RuleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleManager.swift; sourceTree = "<group>"; };
 		69A24F7A28C72DFC00156CE3 /* NodeItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeItem.swift; sourceTree = "<group>"; };
 		69A24F7B28C72DFC00156CE3 /* PriceItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceItem.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				6955EDF328ABD96800F50E3F /* Info.plist */,
 				6955EDDF28ABD87200F50E3F /* theBigDipperApp.swift */,
 				6955EDF428ABDEE800F50E3F /* MainMenu.swift */,
+				699CB50528C8B780006E661E /* AccountWindow.swift */,
 				69A24F8828C770A700156CE3 /* ImportAccountView.swift */,
 				6955EDE328ABD87400F50E3F /* Assets.xcassets */,
 				6955EDE828ABD87400F50E3F /* Persistence.swift */,
@@ -324,6 +327,7 @@
 				69A24F8528C73BB900156CE3 /* Stripe.swift in Sources */,
 				69A24F7D28C72DFC00156CE3 /* PriceItem.swift in Sources */,
 				6955EDF528ABDEE800F50E3F /* MainMenu.swift in Sources */,
+				699CB50728C8B780006E661E /* AccountWindow.swift in Sources */,
 				69F6899C28BCE76000968917 /* AppConst.swift in Sources */,
 				69F6899428BCCD9700968917 /* utils.swift in Sources */,
 				6955EDEC28ABD87400F50E3F /* theBigDipper.xcdatamodeld in Sources */,

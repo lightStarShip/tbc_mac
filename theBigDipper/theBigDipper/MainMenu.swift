@@ -12,7 +12,9 @@ import SwiftUI
 class MainMenu: NSObject {
         
         let menu = NSMenu()
-        @Binding var pop: Bool?
+        var settingsWindow:NSWindowController?
+        
+        private var popover:NSPopover?
         
         func build() ->NSMenu{
                 menu.addItem(NSMenuItem.separator())
@@ -49,11 +51,32 @@ class MainMenu: NSObject {
                 quitMenuItem.target = self
                 
                 menu.addItem(quitMenuItem)
+
+                let showPop = NSMenuItem(
+                        title: "Pop On",
+                        action: #selector(togglePopover),
+                        keyEquivalent: ""
+                )
+                showPop.target = self
+                menu.addItem(showPop)
+                
                 return menu
         }
         
         @objc func about(sender: NSMenuItem) {
                 NSApp.orderFrontStandardAboutPanel()
+        }
+        
+        @objc func togglePopover(sender: NSMenuItem) {
+                if(settingsWindow == nil) {
+                        let detailView = ImportAccountView();
+                       settingsWindow = AccountWindow(rootView: detailView)
+                       settingsWindow!.window?.title = "Cloud Brains - Settings";
+                       settingsWindow!.showWindow(nil)
+                   }
+                   NSApp.setActivationPolicy(.prohibited)
+                   NSApp.activate(ignoringOtherApps: true)
+                   settingsWindow!.window?.orderFrontRegardless()
         }
         
         @objc func quit(sender: NSMenuItem) {
