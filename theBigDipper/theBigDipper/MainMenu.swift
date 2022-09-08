@@ -52,13 +52,13 @@ class MainMenu: NSObject {
                 
                 menu.addItem(quitMenuItem)
 
-                let showPop = NSMenuItem(
-                        title: "Pop On",
-                        action: #selector(togglePopover),
-                        keyEquivalent: ""
-                )
-                showPop.target = self
-                menu.addItem(showPop)
+//                let showPop = NSMenuItem(
+//                        title: "Pop On",
+//                        action: #selector(togglePopover),
+//                        keyEquivalent: ""
+//                )
+//                showPop.target = self
+//                menu.addItem(showPop)
                 
                 return menu
         }
@@ -67,15 +67,26 @@ class MainMenu: NSObject {
                 NSApp.orderFrontStandardAboutPanel()
         }
         
-        @objc func togglePopover(sender: NSMenuItem) {
+        
+        private func showAccountImport(){
                 if(settingsWindow == nil) {
                         settingsWindow = AccountManager(windowNibName: "AccountManager")
-                       settingsWindow!.showWindow(nil)
-                   }
-                   NSApp.setActivationPolicy(.accessory)
-                   NSApp.activate(ignoringOtherApps: true)
-                   settingsWindow!.window?.orderFrontRegardless()
+                        settingsWindow!.showWindow(nil)
+                }
+                NSApp.setActivationPolicy(.accessory)
+                NSApp.activate(ignoringOtherApps: true)
+                settingsWindow!.window?.orderFrontRegardless()
+                
         }
+//        @objc func togglePopover(sender: NSMenuItem) {
+//                if(settingsWindow == nil) {
+//                        settingsWindow = AccountManager(windowNibName: "AccountManager")
+//                       settingsWindow!.showWindow(nil)
+//                   }
+//                   NSApp.setActivationPolicy(.accessory)
+//                   NSApp.activate(ignoringOtherApps: true)
+//                   settingsWindow!.window?.orderFrontRegardless()
+//        }
         
         @objc func quit(sender: NSMenuItem) {
                 NSApp.terminate(self)
@@ -83,6 +94,12 @@ class MainMenu: NSObject {
         
         
         @objc func setupNetwork(sender: NSMenuItem) {
+                
+                if Wallet.WInst.SubAddress == nil{
+                        showAccountImport()
+                        return
+                }
+                
                 if AppSetting.proxyIsOn(){
                         if let err = AppSetting.setupProxy(on: false){
                                 dialogOK(question: "Error".localized, text: "setup proxy failed".localized)
