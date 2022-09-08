@@ -69,12 +69,13 @@ class MainMenu: NSObject {
         
         @objc func togglePopover(sender: NSMenuItem) {
                 if(settingsWindow == nil) {
-                        let detailView = ImportAccountView();
-                       settingsWindow = AccountWindow(rootView: detailView)
+//                        let detailView = ImportAccountView();
+//                       settingsWindow = AccountWindow(rootView: detailView)
+                        settingsWindow = AccountManager(windowNibName: "AccountManager")
                        settingsWindow!.window?.title = "Cloud Brains - Settings";
                        settingsWindow!.showWindow(nil)
                    }
-                   NSApp.setActivationPolicy(.prohibited)
+                   NSApp.setActivationPolicy(.accessory)
                    NSApp.activate(ignoringOtherApps: true)
                    settingsWindow!.window?.orderFrontRegardless()
         }
