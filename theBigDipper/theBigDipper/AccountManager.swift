@@ -9,18 +9,35 @@ import Cocoa
 
 class AccountManager: NSWindowController {
         @IBOutlet var accountStrTF: NSTextField!
-        @IBOutlet var qrCodeImgPathTF: NSSecureTextField!
+        @IBOutlet var qrCodeImagePathLabel: NSTextField!
+        
         
         override func windowDidLoad() {
                 super.windowDidLoad()
         }
         
+        func resetContent(){
+                accountStrTF.stringValue = ""
+                qrCodeImagePathLabel.stringValue = ""
+        }
+        
         @IBAction func ImportByStringData(_ sender: NSButton) {
                 
-                let accStr = accountStrTF.stringValue
-                guard !accStr.isEmpty else{
+                var accStr = accountStrTF.stringValue
+                let imagePath = qrCodeImagePathLabel.stringValue
+                
+                guard !accStr.isEmpty || !imagePath.isEmpty else{
                         return
                 }
+                
+                if accStr.isEmpty{
+                        guard let str = Wallet.ParseAccountQRInmage(path: imagePath) else{
+                                dialogOK(question: "Error".localized, text: "Parse QR Code Failed".localized)
+                                return
+                        }
+                        accStr = str
+                }
+                
                 
                 let pwd = showPasswordDialog()
                 guard !pwd.isEmpty else{
@@ -38,6 +55,13 @@ class AccountManager: NSWindowController {
                 self.close()
         }
         
+        
         @IBAction func QRScan(_ sender: NSButton) {
+                guard let url = OpenImgFilePath() else{
+                        return
+                }
+                
+                qrCodeImagePathLabel.stringValue = url.path
+                accountStrTF.stringValue = ""
         }
 }

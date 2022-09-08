@@ -9,7 +9,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="AccountManager" customModule="theBigDipper" customModuleProvider="target">
             <connections>
                 <outlet property="accountStrTF" destination="h3E-oD-ZaQ" id="T0W-dP-cyw"/>
-                <outlet property="qrCodeImgPathTF" destination="StF-I8-MGd" id="g3g-Jn-QjM"/>
+                <outlet property="qrCodeImagePathLabel" destination="8qk-Xw-fVF" id="P05-93-sbI"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -30,7 +30,7 @@
                             <constraint firstAttribute="height" constant="32" id="Sra-ts-10Z"/>
                             <constraint firstAttribute="width" constant="120" id="sSr-4u-aWk"/>
                         </constraints>
-                        <buttonCell key="cell" type="push" title="QR Image" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="sEk-08-M6T">
+                        <buttonCell key="cell" type="push" title="Load QR Code" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="sEk-08-M6T">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -38,20 +38,6 @@
                             <action selector="QRScan:" target="-2" id="h5S-WW-z6U"/>
                         </connections>
                     </button>
-                    <secureTextField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="StF-I8-MGd">
-                        <rect key="frame" x="20" y="80" width="395" height="32"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="32" id="BJu-Ps-Mbe"/>
-                        </constraints>
-                        <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="a1t-c7-9yw">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="gridColor" catalog="System" colorSpace="catalog"/>
-                            <allowedInputSourceLocales>
-                                <string>NSAllRomanInputSourcesLocaleIdentifier</string>
-                            </allowedInputSourceLocales>
-                        </secureTextFieldCell>
-                    </secureTextField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="h3E-oD-ZaQ">
                         <rect key="frame" x="20" y="128" width="535" height="240"/>
                         <constraints>
@@ -77,15 +63,23 @@
                             <action selector="ImportByStringData:" target="-2" id="QRl-mT-OLR"/>
                         </connections>
                     </button>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8qk-Xw-fVF">
+                        <rect key="frame" x="20" y="88" width="395" height="16"/>
+                        <textFieldCell key="cell" lineBreakMode="truncatingMiddle" placeholderString="QR Image File Path" usesSingleLineMode="YES" id="heB-yw-nw5">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                 </subviews>
                 <constraints>
                     <constraint firstItem="l1j-e0-KIh" firstAttribute="centerX" secondItem="se5-gp-TjO" secondAttribute="centerX" id="0ty-Qr-TaS"/>
                     <constraint firstAttribute="trailing" secondItem="h3E-oD-ZaQ" secondAttribute="trailing" constant="20" symbolic="YES" id="9XI-9R-cBm"/>
+                    <constraint firstItem="8qk-Xw-fVF" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="22" id="AUj-if-N8C"/>
                     <constraint firstAttribute="bottom" secondItem="l1j-e0-KIh" secondAttribute="bottom" constant="20" symbolic="YES" id="F12-ce-TNe"/>
-                    <constraint firstItem="StF-I8-MGd" firstAttribute="top" secondItem="h3E-oD-ZaQ" secondAttribute="bottom" constant="16" id="PP9-yT-xmq"/>
-                    <constraint firstItem="cWH-GZ-8za" firstAttribute="leading" secondItem="StF-I8-MGd" secondAttribute="trailing" constant="20" id="RaX-Hp-L31"/>
+                    <constraint firstItem="cWH-GZ-8za" firstAttribute="leading" secondItem="8qk-Xw-fVF" secondAttribute="trailing" constant="22" id="Jhx-qU-qF3"/>
+                    <constraint firstItem="8qk-Xw-fVF" firstAttribute="centerY" secondItem="cWH-GZ-8za" secondAttribute="centerY" id="Udu-HV-dDg"/>
                     <constraint firstAttribute="trailing" secondItem="cWH-GZ-8za" secondAttribute="trailing" constant="20" symbolic="YES" id="dSH-6n-ce9"/>
-                    <constraint firstItem="StF-I8-MGd" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" symbolic="YES" id="dyL-Eb-wi8"/>
                     <constraint firstItem="cWH-GZ-8za" firstAttribute="top" secondItem="h3E-oD-ZaQ" secondAttribute="bottom" constant="16" id="eip-T7-akU"/>
                     <constraint firstItem="h3E-oD-ZaQ" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" symbolic="YES" id="rrb-xa-99U"/>
                     <constraint firstItem="h3E-oD-ZaQ" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" symbolic="YES" id="y7X-cQ-IPF"/>

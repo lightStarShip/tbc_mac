@@ -74,6 +74,7 @@ class Wallet:NSObject{
         }
         
         public static func ImportWallet(auth:String, josn:String) -> Bool{
+                print("------>>>\(auth)   \(josn) ")
                 guard LibImportWallet(josn.toGoString(), auth.toGoString()) == 1 else {
                         return false
                 }
@@ -89,4 +90,11 @@ class Wallet:NSObject{
                 return LibOpenWallet(auth.toGoString()) == 1
         }
         
+        public static func ParseAccountQRInmage(path:String)->String?{
+                guard let data = ScanQrCode(path.toGoString()) else{
+                        return nil
+                }
+                
+                return String(cString: data)
+        }
 }

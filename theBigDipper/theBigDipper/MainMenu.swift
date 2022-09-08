@@ -12,7 +12,7 @@ import SwiftUI
 class MainMenu: NSObject {
         
         let menu = NSMenu()
-        var settingsWindow:NSWindowController?
+        var accountWindow:AccountManager?
         
         private var popover:NSPopover?
         
@@ -68,14 +68,14 @@ class MainMenu: NSObject {
         
         
         private func showAccountImport(){
-                if(settingsWindow == nil) {
-                        settingsWindow = AccountManager(windowNibName: "AccountManager")
-                        settingsWindow!.showWindow(nil)
+                if(accountWindow == nil) {
+                        accountWindow = AccountManager(windowNibName: "AccountManager")
+                        accountWindow!.showWindow(nil)
                 }
                 NSApp.setActivationPolicy(.accessory)
                 NSApp.activate(ignoringOtherApps: true)
-                settingsWindow!.window?.orderFrontRegardless()
-                
+                accountWindow!.window?.orderFrontRegardless()
+                accountWindow?.resetContent()
         }
 //        @objc func togglePopover(sender: NSMenuItem) {
 //                if(settingsWindow == nil) {

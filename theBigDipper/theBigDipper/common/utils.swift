@@ -33,7 +33,7 @@ func dialogOK(question: String, text: String) -> Void {DispatchQueue.main.async 
         alert.alertStyle = .warning
         alert.addButton(withTitle: "OK".localized)
         alert.runModal()
-        }
+}
 }
 
 func dialogOKCancel(question: String, text: String) -> Bool {
@@ -96,4 +96,24 @@ extension NSTextView {
                 }
                 return super.performKeyEquivalent(with: event)
         }
+}
+
+
+func OpenImgFilePath()->URL? {
+        
+        let dialog = NSOpenPanel();
+        
+        dialog.title                   = "Choose an image | Our Code World";
+        dialog.showsResizeIndicator    = true;
+        dialog.showsHiddenFiles        = false;
+        dialog.allowsMultipleSelection = false;
+        dialog.canChooseDirectories = false;
+        dialog.allowedFileTypes        = ["png", "jpg", "jpeg", "gif"];
+        
+        if (dialog.runModal() ==  NSApplication.ModalResponse.OK) {
+                return dialog.url
+        }
+        
+        return nil
+        
 }
