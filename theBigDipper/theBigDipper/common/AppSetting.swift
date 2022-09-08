@@ -100,10 +100,12 @@ class AppSetting:NSObject{
         
         static func setupProxy(on:Bool) -> Error?{
                 
-                setupProxySetting(on:on)
+                if let e = setupProxySetting(on:on){
+                        return e
+                }
                 
                 if on{
-                                                
+                        
                         let proxyAddr = "127.0.0.1:\(ProxyLocalPort)".toGoString()
                         let node_addr = AppSetting.coreData?.minerAddrInUsed
                         guard let node = NodeItem.GetNode(addr:node_addr) else{
@@ -167,16 +169,14 @@ extension AppSetting{
                 
         }
         
-        static func setupProxySetting(on:Bool){
+        static func setupProxySetting(on:Bool)->Error?{
                 
                 guard let prefRef = SCPreferencesCreateWithAuthorization(kCFAllocatorDefault, "TheBigDipper" as CFString, nil, authRef!)else{
-                        NSLog("create preference failed")
-                        return
+                        return AppErr.system("create preference failed")
                 }
                 
                 guard let networkSets = SCPreferencesGetValue(prefRef, kSCPrefNetworkServices) else{
-                        NSLog("no valid netowrk service setting")
-                        return
+                        return AppErr.system("no valid netowrk service setting")
                 }
                 
                 var proxySettings: [String:AnyObject] = [:]
@@ -220,7 +220,12 @@ extension AppSetting{
                 
                 //                AuthorizationFree(authRef!, AuthorizationFlags())
                 
+                if commitRet && applyRet{
+                        return nil
+                }
                 NSLog("System proxy set result commitRet=\(commitRet), applyRet=\(applyRet)");
+                
+                return AppErr.system("apply proxy failed".localized)
         }
 }
 
