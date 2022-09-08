@@ -9,6 +9,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="AccountManager" customModule="theBigDipper" customModuleProvider="target">
             <connections>
                 <outlet property="accountStrTF" destination="h3E-oD-ZaQ" id="T0W-dP-cyw"/>
+                <outlet property="qrCodeImgPathTF" destination="StF-I8-MGd" id="g3g-Jn-QjM"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -34,7 +35,7 @@
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="ImportByStringData:" target="-2" id="CSU-sX-qHY"/>
+                            <action selector="QRScan:" target="-2" id="h5S-WW-z6U"/>
                         </connections>
                     </button>
                     <secureTextField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="StF-I8-MGd">

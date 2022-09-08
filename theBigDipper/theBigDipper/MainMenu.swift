@@ -19,7 +19,6 @@ class MainMenu: NSObject {
         func build() ->NSMenu{
                 menu.addItem(NSMenuItem.separator())
                 
-                
                 // Adding a seperator
                 let setupNetworkItem = NSMenuItem(
                         title: "Turn On",

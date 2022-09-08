@@ -78,7 +78,6 @@ class Wallet:NSObject{
                         return false
                 }
                 populateWallet(jsonStr:josn)
-                
                 return true
         }
         
