@@ -32,7 +32,6 @@
 		69DD56E428C5E52A00A464FA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69DD56E328C5E52A00A464FA /* Cocoa.framework */; };
 		69DD56EC28C5EFD300A464FA /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DD56EB28C5EFD300A464FA /* main.swift */; };
 		69E2B25D28BDE814002E23B5 /* AppErr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E2B25C28BDE814002E23B5 /* AppErr.swift */; };
-		69E2B27228BDFC4B002E23B5 /* PacServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E2B27128BDFC4B002E23B5 /* PacServer.swift */; };
 		69E2B27428BE0125002E23B5 /* gfw.js in Resources */ = {isa = PBXBuildFile; fileRef = 69E2B27328BE0125002E23B5 /* gfw.js */; };
 		69F6898328BC781500968917 /* AppSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F6898228BC781500968917 /* AppSetting.swift */; };
 		69F6899228BCCC6700968917 /* simple.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69F6899128BCCC5000968917 /* simple.a */; };
@@ -106,7 +105,6 @@
 		69DD56E928C5EFD300A464FA /* ProxyConfig */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ProxyConfig; sourceTree = BUILT_PRODUCTS_DIR; };
 		69DD56EB28C5EFD300A464FA /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		69E2B25C28BDE814002E23B5 /* AppErr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppErr.swift; sourceTree = "<group>"; };
-		69E2B27128BDFC4B002E23B5 /* PacServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacServer.swift; sourceTree = "<group>"; };
 		69E2B27328BE0125002E23B5 /* gfw.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = gfw.js; sourceTree = "<group>"; };
 		69F6898228BC781500968917 /* AppSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSetting.swift; sourceTree = "<group>"; };
 		69F6898C28BC8AC400968917 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
@@ -214,7 +212,6 @@
 				69F6899B28BCE76000968917 /* AppConst.swift */,
 				69F6899328BCCD9700968917 /* utils.swift */,
 				69E2B25C28BDE814002E23B5 /* AppErr.swift */,
-				69E2B27128BDFC4B002E23B5 /* PacServer.swift */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -347,7 +344,6 @@
 				6955EDE028ABD87200F50E3F /* theBigDipperApp.swift in Sources */,
 				69B35F8B28C9B65B003E6170 /* AccountManager.swift in Sources */,
 				69A24F7928C72A0900156CE3 /* RuleManager.swift in Sources */,
-				69E2B27228BDFC4B002E23B5 /* PacServer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
