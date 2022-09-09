@@ -49,4 +49,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                         }
                 }
         }
+
+        func applicationWillTerminate(_ notification: Notification) {
+                PersistenceController.shared.saveContext()
+        }
 }

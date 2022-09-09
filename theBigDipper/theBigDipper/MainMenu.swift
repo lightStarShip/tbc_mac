@@ -12,23 +12,39 @@ import SwiftUI
 class MainMenu: NSObject {
         
         let menu = NSMenu()
+        var nodeListNode = NSMenu()
         var accountWindow:AccountManager?
         
         private var popover:NSPopover?
         
         func build() ->NSMenu{
+                
+                NotificationCenter.default.addObserver(self, selector: #selector(reloadNodeNenu(_:)),
+                                                       name: AppConstants.NOTI_NODE_LIST_UPDATE, object: nil)
                 menu.addItem(NSMenuItem.separator())
                 
                 // Adding a seperator
                 let setupNetworkItem = NSMenuItem(
-                        title: "Turn On",
+                        title: "Turn On".localized,
                         action: #selector(setupNetwork),
                         keyEquivalent: ""
                 )
                 setupNetworkItem.target = self
                 menu.addItem(setupNetworkItem)
                 
+                
                 // Adding a seperator
+                menu.addItem(NSMenuItem.separator())
+                
+                let nodeItem = NSMenuItem(
+                        title: "node List".localized,
+                        action: nil,
+                        keyEquivalent: ""
+                )
+                nodeItem.target = self
+                menu.addItem(nodeItem)
+                menu.setSubmenu(nodeListNode, for: nodeItem)
+                
                 let aboutMenuItem = NSMenuItem(
                         title: "About KyanBar",
                         action: #selector(about),
@@ -37,11 +53,9 @@ class MainMenu: NSObject {
                 aboutMenuItem.target = self
                 menu.addItem(aboutMenuItem)
                 
-                // Adding a seperator
                 menu.addItem(NSMenuItem.separator())
                 
                 
-                // Adding a quit menu item
                 let quitMenuItem = NSMenuItem(
                         title: "Quit KyanBar",
                         action: #selector(quit),
@@ -50,14 +64,6 @@ class MainMenu: NSObject {
                 quitMenuItem.target = self
                 
                 menu.addItem(quitMenuItem)
-
-//                let showPop = NSMenuItem(
-//                        title: "Pop On",
-//                        action: #selector(togglePopover),
-//                        keyEquivalent: ""
-//                )
-//                showPop.target = self
-//                menu.addItem(showPop)
                 
                 return menu
         }
@@ -66,6 +72,43 @@ class MainMenu: NSObject {
                 NSApp.orderFrontStandardAboutPanel()
         }
         
+        @objc func choseFreeNodeItem(sender: NSMenuItem) {
+                
+        }
+        
+        @objc func choseVipNodeItem(sender: NSMenuItem) {
+                
+        }
+        
+        @objc func reloadNodeNenu(_ notification: Notification?) {
+                nodeListNode.removeAllItems()
+                
+                print("------------->",AppSetting.coreData?.minerAddrInUsed)
+                
+                for (idx,node) in NodeItem.freeNodes.enumerated() {
+                        let nodeItem = NSMenuItem(
+                                title: node.location,
+                                action: #selector(choseFreeNodeItem),
+                                keyEquivalent: ""
+                        )
+                        nodeItem.tag =  idx
+                        nodeItem.target = self
+                        nodeListNode.addItem(nodeItem)
+                }
+                
+                menu.addItem(NSMenuItem.separator())
+                
+                for (idx, node) in NodeItem.vipNodes.enumerated() {
+                        let nodeItem = NSMenuItem(
+                                title: node.location,
+                                action: #selector(choseVipNodeItem),
+                                keyEquivalent: ""
+                        )
+                        nodeItem.tag =  idx
+                        nodeItem.target = self
+                        nodeListNode.addItem(nodeItem)
+                }
+        }
         
         private func showAccountImport(){
                 if(accountWindow == nil) {
@@ -77,15 +120,6 @@ class MainMenu: NSObject {
                 accountWindow!.window?.orderFrontRegardless()
                 accountWindow?.resetContent()
         }
-//        @objc func togglePopover(sender: NSMenuItem) {
-//                if(settingsWindow == nil) {
-//                        settingsWindow = AccountManager(windowNibName: "AccountManager")
-//                       settingsWindow!.showWindow(nil)
-//                   }
-//                   NSApp.setActivationPolicy(.accessory)
-//                   NSApp.activate(ignoringOtherApps: true)
-//                   settingsWindow!.window?.orderFrontRegardless()
-//        }
         
         @objc func quit(sender: NSMenuItem) {
                 _ = AppSetting.setupProxy(on: false)

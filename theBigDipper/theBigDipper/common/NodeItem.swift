@@ -30,7 +30,7 @@ class NodeItem : NSObject {
                 self.isFree = json["free"].bool ?? false
         }
         
-        public static func fullFillNodes(jsonStr:String?, needNoti:Bool = false){
+        public static func fullFillNodes(jsonStr:String?){
                 guard let str = jsonStr, !str.isEmpty else{
                         return
                 }
@@ -45,10 +45,7 @@ class NodeItem : NSObject {
                                 vipNodes.append(item)
                         }
                 }
-                
-                if needNoti{
-                        PostNoti(AppConstants.NOTI_NODE_LIST_UPDATE)
-                }
+                PostNoti(AppConstants.NOTI_NODE_LIST_UPDATE)
         }
         
         public static func GetNode(addr:String?) -> NodeItem?{
@@ -63,13 +60,10 @@ class NodeItem : NSObject {
                                 randomFreeNOde = free_node
                         }
                 }
-                if !isVip{
-                        if addr != nil && randomFreeNOde != nil{
-                                AppSetting.coreData?.minerAddrInUsed = randomFreeNOde!.wallet
-                        }
+                
+                if !isVip || addr == nil{
                         return randomFreeNOde
                 }
-                
                 
                 for vipNode in vipNodes {
                         if addr == vipNode.wallet{
