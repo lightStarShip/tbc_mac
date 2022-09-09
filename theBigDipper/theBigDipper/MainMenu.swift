@@ -88,6 +88,7 @@ class MainMenu: NSObject {
 //        }
         
         @objc func quit(sender: NSMenuItem) {
+                _ = AppSetting.setupProxy(on: false)
                 NSApp.terminate(self)
         }
         

@@ -36,5 +36,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 statusItem.menu = menu.build()
                 
                 AppSetting.initSettting()
+                if let subAddr = Wallet.WInst.SubAddress {
+                        var pwd = AppSetting.readPassword(service: AppConstants.SERVICE_NME_FOR_OSS,
+                                                          account: subAddr)
+                        if pwd == nil{
+                                pwd = showPasswordDialog()
+                        }
+                        
+                        if !Wallet.WInst.OpenWallet(auth: pwd!){
+                                dialogOK(question: "Error".localized, text: "open local account failed".localized)
+                                return
+                        }
+                }
         }
 }

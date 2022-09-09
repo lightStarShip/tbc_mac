@@ -74,7 +74,6 @@ class Wallet:NSObject{
         }
         
         public static func ImportWallet(auth:String, josn:String) -> Bool{
-                print("------>>>\(auth)   \(josn) ")
                 guard LibImportWallet(josn.toGoString(), auth.toGoString()) == 1 else {
                         return false
                 }

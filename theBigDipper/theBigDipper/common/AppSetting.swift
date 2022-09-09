@@ -80,7 +80,6 @@ class AppSetting:NSObject{
                 
                 AppSetting.coreData = setting
                 
-                
                 RuleManager.rInst.loadRulsByVersion()
                 
                 if let err = initAuthorization(){
@@ -112,10 +111,10 @@ class AppSetting:NSObject{
                                 return AppErr.conf("no valid node")
                         }
                         
-                        let ip = node.ipStr.toGoString()
-                        let addr = node.wallet.toGoString()
+                        let nodeIP = node.ipStr.toGoString()
+                        let walletArr = node.wallet.toGoString()
                         let rule = RuleManager.rInst.domainStr().toGoString()
-                        if let err = StartProxy(proxyAddr, ip, addr, rule){
+                        if let err = StartProxy(proxyAddr, nodeIP, walletArr, rule){
                                 return AppErr.lib(String(cString: err))
                         }
                         

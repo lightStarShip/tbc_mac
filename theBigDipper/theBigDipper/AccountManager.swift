@@ -52,6 +52,8 @@ class AccountManager: NSWindowController {
                 
                 dialogOK(question: "Success".localized, text: "")
                 
+                _ = AppSetting.save(password: pwd, service: AppConstants.SERVICE_NME_FOR_OSS, account: Wallet.WInst.SubAddress!)
+                
                 self.close()
         }
         
