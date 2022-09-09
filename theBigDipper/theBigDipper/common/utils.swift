@@ -23,6 +23,10 @@ extension String {
                 let buffer = UnsafePointer<Int8>(cs!)
                 return GoString(p:buffer, n:strlen(buffer))
         }
+        
+        func toCString()->UnsafeMutablePointer<CChar>{
+                return UnsafeMutablePointer(mutating: (self as NSString).utf8String!)
+        }
 }
 
 

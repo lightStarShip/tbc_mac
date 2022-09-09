@@ -76,4 +76,12 @@ class NodeItem : NSObject {
         public static func parseNodePort(nodeAddr:String)->(Int32) {
                 return MinerPort(nodeAddr.toGoString())
         }
+        
+        public static func changeNode(node:NodeItem)->Error?{
+                guard let err = ChangeNode(node.ipStr.toGoString(), node.wallet.toGoString()) else{
+                        return nil
+                }
+                
+                return AppErr.lib("change node err:\(String(cString: err))")
+        }
 }

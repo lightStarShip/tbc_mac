@@ -131,4 +131,8 @@ class RuleManager:NSObject{
         func domainStr()->String{
                 return coreData?.dnsStr ?? ""
         }
+        
+        func innerIPStr()->String{
+                return coreData?.ipStr ?? ""
+        }
 }

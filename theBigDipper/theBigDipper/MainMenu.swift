@@ -88,22 +88,28 @@ class MainMenu: NSObject {
         }
         
         @objc func choseFreeNodeItem(sender: NSMenuItem) {
-                uncheckAllNode()
-                sender.state = .on
                 let node = NodeItem.freeNodes[sender.tag]
-                AppSetting.coreData?.minerAddrInUsed = node.wallet
+                setnodeInfo(node:node, sender: sender)
         }
         
         @objc func choseVipNodeItem(sender: NSMenuItem) {
-                uncheckAllNode()
-                sender.state = .on
-                
                 let node = NodeItem.vipNodes[sender.tag]
-                AppSetting.coreData?.minerAddrInUsed = node.wallet
+                setnodeInfo(node:node, sender: sender)
         }
-        private func uncheckAllNode(){
+        
+        private func setnodeInfo(node:NodeItem, sender: NSMenuItem){
+                if node.wallet == AppSetting.coreData?.minerAddrInUsed{
+                        return
+                }
+                
                 for item in nodeListMenu.items {
                         item.state = .off
+                }
+                sender.state = .on
+                AppSetting.coreData?.minerAddrInUsed = node.wallet
+                sender.parent?.title = node.location
+                if let err = NodeItem.changeNode(node:node){
+                        dialogOK(question: "Error".localized, text: err.localizedDescription)
                 }
         }
         

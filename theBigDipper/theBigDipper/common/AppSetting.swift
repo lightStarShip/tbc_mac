@@ -49,9 +49,9 @@ class AppSetting:NSObject{
         
         static var systemCallBack:UserInterfaceAPI = {v in
                 guard let data = v else{
-                        return
+                        return  "".toCString()
                 }
-                callback(withJson: String(cString: data))
+                return callback(withJson: String(cString: data)).toCString()
         }
         
         static var uiLog:CallBackLog = {v in
@@ -87,8 +87,20 @@ class AppSetting:NSObject{
                 
         }
         
-        static func callback(withJson:String){
-                //                let json = JSON(parseJSON: withJson)
+        static func callback(withJson:String)->String{
+                
+                let json = JSON(parseJSON: withJson)
+                let cmd = json["cmd"].int ?? -1
+                
+                
+                switch cmd{
+                case 1:
+                        return RuleManager.rInst.domainStr()
+                case 2:
+                        return RuleManager.rInst.innerIPStr()
+                default:
+                        return ""
+                }
         }
         
         static func log(_ str:String){
@@ -110,8 +122,7 @@ class AppSetting:NSObject{
                         
                         let nodeIP = node.ipStr.toGoString()
                         let walletArr = node.wallet.toGoString()
-                        let rule = RuleManager.rInst.domainStr().toGoString()
-                        if let err = StartProxy(proxyAddr, nodeIP, walletArr, rule){
+                        if let err = StartProxy(proxyAddr, nodeIP, walletArr){
                                 return AppErr.lib(String(cString: err))
                         }
                         
