@@ -12,6 +12,8 @@ public struct AppConstants {
         static public let DBNAME_APPSETTING = "CDAppSetting"
         static public let DBNAME_Stripe = "CDStripe"
         static public let SERVICE_NME_FOR_OSS = "com.star.thebigdipper"
+        static public let ProxyLocalPort = 31080;
+        static public let CmdLineProxy = "export https_proxy=socks5://127.0.0.1:\(ProxyLocalPort);http_proxy=socks5://127.0.0.1:\(ProxyLocalPort)"
         
         
         static public let ConfigUrl = "https://lightstarship.github.io"

@@ -15,7 +15,6 @@ import SecurityInterface
 class AppSetting:NSObject{
         
         //        static let PACServerPort = 31087;
-        static let ProxyLocalPort = 31080;
         //        static let kDefaultPacURL = "http://127.0.0.1:\(PACServerPort)/proxy.pac";
         public static let systemProxyAuthRightName = "com.stars.tbd.mac-proxy_v7"
         static var authRef: AuthorizationRef? = nil
@@ -100,7 +99,7 @@ class AppSetting:NSObject{
         static func setupProxy(on:Bool) -> Error?{
                 
                 if on{
-                        let proxyAddr = "127.0.0.1:\(ProxyLocalPort)".toGoString()
+                        let proxyAddr = "127.0.0.1:\(AppConstants.ProxyLocalPort)".toGoString()
                         let node_addr = AppSetting.coreData?.minerAddrInUsed
                         guard let node = NodeItem.GetNode(addr:node_addr) else{
                                 return AppErr.conf("no valid node")
@@ -120,9 +119,9 @@ class AppSetting:NSObject{
                         StopProxy()
                 }
                 
-//                if let e = setupProxySetting(on:on){
-//                        return e
-//                }
+                if let e = setupProxySetting(on:on){
+                        return e
+                }
                 
                 return nil
         }
@@ -184,7 +183,7 @@ extension AppSetting{
                 
                 if on{
                         proxySettings[kCFNetworkProxiesSOCKSProxy as String] = "127.0.0.1" as AnyObject
-                        proxySettings[kCFNetworkProxiesSOCKSPort as String] = ProxyLocalPort as AnyObject
+                        proxySettings[kCFNetworkProxiesSOCKSPort as String] = AppConstants.ProxyLocalPort as AnyObject
                         proxySettings[kCFNetworkProxiesSOCKSEnable as String] = 1 as AnyObject
                         proxySettings[kCFNetworkProxiesExceptionsList as String] = [
                                 "192.168.0.0/16",

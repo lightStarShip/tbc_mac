@@ -12,7 +12,7 @@ import SwiftUI
 class MainMenu: NSObject {
         
         let menu = NSMenu()
-        var nodeListNode = NSMenu()
+        var nodeListMenu = NSMenu()
         var accountWindow:AccountManager?
         
         private var popover:NSPopover?
@@ -33,7 +33,6 @@ class MainMenu: NSObject {
                 menu.addItem(setupNetworkItem)
                 
                 
-                // Adding a seperator
                 menu.addItem(NSMenuItem.separator())
                 
                 let nodeItem = NSMenuItem(
@@ -43,7 +42,17 @@ class MainMenu: NSObject {
                 )
                 nodeItem.target = self
                 menu.addItem(nodeItem)
-                menu.setSubmenu(nodeListNode, for: nodeItem)
+                
+                menu.setSubmenu(nodeListMenu, for: nodeItem)
+                
+                
+                let copyProxy = NSMenuItem(
+                        title: "Copy Command Line".localized,
+                        action: #selector(copyCmdLine),
+                        keyEquivalent: ""
+                )
+                copyProxy.target = self
+                menu.addItem(copyProxy)
                 
                 let aboutMenuItem = NSMenuItem(
                         title: "About KyanBar",
@@ -68,22 +77,51 @@ class MainMenu: NSObject {
                 return menu
         }
         
+        @objc func copyCmdLine(sender: NSMenuItem) {
+                let pasteBoard = NSPasteboard.general
+                pasteBoard.clearContents()
+                pasteBoard.setString(AppConstants.CmdLineProxy, forType: .string)
+        }
+        
         @objc func about(sender: NSMenuItem) {
                 NSApp.orderFrontStandardAboutPanel()
         }
         
         @objc func choseFreeNodeItem(sender: NSMenuItem) {
-                
+                uncheckAllNode()
+                sender.state = .on
+                let node = NodeItem.freeNodes[sender.tag]
+                AppSetting.coreData?.minerAddrInUsed = node.wallet
         }
         
         @objc func choseVipNodeItem(sender: NSMenuItem) {
+                uncheckAllNode()
+                sender.state = .on
                 
+                let node = NodeItem.vipNodes[sender.tag]
+                AppSetting.coreData?.minerAddrInUsed = node.wallet
+        }
+        private func uncheckAllNode(){
+                for item in nodeListMenu.items {
+                        item.state = .off
+                }
+        }
+        
+        @objc func showHelpToRecharge(sender: NSMenuItem) {
+                //TODO::
         }
         
         @objc func reloadNodeNenu(_ notification: Notification?) {
-                nodeListNode.removeAllItems()
+                nodeListMenu.removeAllItems()
                 
-                print("------------->",AppSetting.coreData?.minerAddrInUsed)
+                let curAddr = AppSetting.coreData?.minerAddrInUsed
+                let freeTips = NSMenuItem(
+                        title: "Free Nodes".localized,
+                        action: nil,
+                        keyEquivalent: ""
+                )
+                nodeListMenu.addItem(freeTips)
+                nodeListMenu.addItem(NSMenuItem.separator())
                 
                 for (idx,node) in NodeItem.freeNodes.enumerated() {
                         let nodeItem = NSMenuItem(
@@ -93,10 +131,33 @@ class MainMenu: NSObject {
                         )
                         nodeItem.tag =  idx
                         nodeItem.target = self
-                        nodeListNode.addItem(nodeItem)
+                        if curAddr == node.wallet{
+                                nodeItem.state = .on
+                        }
+                        nodeListMenu.addItem(nodeItem)
                 }
                 
-                menu.addItem(NSMenuItem.separator())
+                
+                nodeListMenu.addItem(NSMenuItem.separator())
+                if !Stripe.SInst.IsVipUser(){
+                        nodeListMenu.addItem(NSMenuItem.separator())
+                        let VipTips = NSMenuItem(
+                                title: "VIP Recharge".localized,
+                                action: #selector(showHelpToRecharge),
+                                keyEquivalent: ""
+                        )
+                        VipTips.target = self
+                        nodeListMenu.addItem(VipTips)
+                        return
+                }
+                
+                let VipTips = NSMenuItem(
+                        title: "Vip Nodes".localized,
+                        action: nil,
+                        keyEquivalent: ""
+                )
+                nodeListMenu.addItem(VipTips)
+                nodeListMenu.addItem(NSMenuItem.separator())
                 
                 for (idx, node) in NodeItem.vipNodes.enumerated() {
                         let nodeItem = NSMenuItem(
@@ -106,7 +167,10 @@ class MainMenu: NSObject {
                         )
                         nodeItem.tag =  idx
                         nodeItem.target = self
-                        nodeListNode.addItem(nodeItem)
+                        if curAddr == node.wallet{
+                                nodeItem.state = .on
+                        }
+                        nodeListMenu.addItem(nodeItem)
                 }
         }
         
