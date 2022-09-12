@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(macOS 11.0, *)
 @main
 struct theBigDipperApp: App {
         // swiftlint:disable:next weak_delegate
