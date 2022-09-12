@@ -14,6 +14,8 @@ import SecurityInterface
 
 class AppSetting:NSObject{
         
+        static let kProxyConfigPath = "/Library/Application Support/TheBigDipper/ProxyConfig"
+        
         //        static let PACServerPort = 31087;
         //        static let kDefaultPacURL = "http://127.0.0.1:\(PACServerPort)/proxy.pac";
         public static let systemProxyAuthRightName = "com.stars.tbd.mac-proxy_v7"
@@ -62,6 +64,9 @@ class AppSetting:NSObject{
         }
         
         static func initSettting(){
+                
+                ensureLaunchAgentsDirOwner()
+                
                 InitLib(AppSetting.StripeDebugMode,
                         LogLevel.debug.rawValue,
                         AppConstants.ConfigUrl.toGoString(),
@@ -81,10 +86,13 @@ class AppSetting:NSObject{
                 
                 RuleManager.rInst.loadRulsByVersion()
                 
-                if let err = initAuthorization(){
-                        print("------>>>", err.localizedDescription)
-                }
+                //                if let err = initAuthorization(){
+                //                        print("------>>>", err.localizedDescription)
+                //                }
                 
+                if !install(){
+                        print("------>>> failed")
+                }
         }
         
         static func callback(withJson:String)->String{
@@ -143,102 +151,102 @@ class AppSetting:NSObject{
 }
 
 
-extension AppSetting{
-        
-        static func initAuthorization() -> Error?{
-                var status = AuthorizationCreate(nil, nil, AuthorizationFlags(), &authRef)
-                if status != errAuthorizationSuccess{
-                        return AppErr.system("create authRef failed")
-                }
-                
-                
-                let rightName = AppSetting.systemProxyAuthRightName
-                var currentRight:CFDictionary?
-                status = AuthorizationRightGet((rightName as NSString).utf8String! , &currentRight)
-                if (status == errAuthorizationDenied) {
-                        status = AuthorizationRightSet(authRef!, (rightName as NSString).utf8String!, rightDefaultRule as CFDictionary, "Change system proxy settings." as CFString, nil, "Common" as CFString)
-                        if (status != errAuthorizationSuccess) {
-                                return AppErr.system("AuthorizationRightSet failed")
-                        }
-                }
-                
-                var authItem = AuthorizationItem(name: (rightName as NSString).utf8String!,
-                                                 valueLength: 0,
-                                                 value:UnsafeMutableRawPointer(bitPattern: 0),
-                                                 flags: 0)
-                var authRights = AuthorizationRights(count:1, items: withUnsafeMutablePointer(to:&authItem){
-                        p in
-                        return p
-                })
-                
-                let authFlags:AuthorizationFlags = [.extendRights , .interactionAllowed, .preAuthorize, .partialRights]
-                status = AuthorizationCopyRights(authRef!, &authRights, nil,authFlags, nil);
-                if (status != errAuthorizationSuccess) {
-                        return AppErr.system("AuthorizationCopyRights failed:\(status)")
-                }
-                return nil
-                
-        }
-        
-        static func setupProxySetting(on:Bool)->Error?{
-                
-                guard let prefRef = SCPreferencesCreateWithAuthorization(kCFAllocatorDefault, "TheBigDipper" as CFString, nil, authRef!)else{
-                        return AppErr.system("create preference failed")
-                }
-                
-                guard let networkSets = SCPreferencesGetValue(prefRef, kSCPrefNetworkServices) else{
-                        return AppErr.system("no valid netowrk service setting")
-                }
-                
-                var proxySettings: [String:AnyObject] = [:]
-                
-                if on{
-                        proxySettings[kCFNetworkProxiesSOCKSProxy as String] = "127.0.0.1" as AnyObject
-                        proxySettings[kCFNetworkProxiesSOCKSPort as String] = AppConstants.ProxyLocalPort as AnyObject
-                        proxySettings[kCFNetworkProxiesSOCKSEnable as String] = 1 as AnyObject
-                        proxySettings[kCFNetworkProxiesExceptionsList as String] = [
-                                "192.168.0.0/16",
-                                "10.0.0.0/8",
-                                "172.16.0.0/12",
-                                "127.0.0.1",
-                                "localhost",
-                                "*.local"
-                        ] as AnyObject
-                        
-                }else{
-                        proxySettings[kCFNetworkProxiesSOCKSEnable as String] = 0 as AnyObject
-                        proxySettings[kCFNetworkProxiesSOCKSProxy as String] = "" as AnyObject
-                        proxySettings[kCFNetworkProxiesSOCKSPort as String] = 0 as AnyObject
-                        proxySettings[kCFNetworkProxiesExceptionsList as String] = [] as AnyObject
-                }
-                
-                
-                for key in networkSets.allKeys {
-                        let dict = networkSets.object(forKey: key) as? NSDictionary
-                        let hardware = ((dict?["Interface"]) as? NSDictionary)?["Hardware"] as? String
-                        if hardware != "AirPort" && hardware != "Ethernet" && hardware != "Wi-Fi"{
-                                continue
-                        }
-                        
-                        
-                        let path = "/\(kSCPrefNetworkServices)/\(key)/\(kSCEntNetProxies)"
-                        SCPreferencesPathSetValue(prefRef, path as CFString, proxySettings as CFDictionary)
-                }
-                
-                let commitRet = SCPreferencesCommitChanges(prefRef)
-                let applyRet = SCPreferencesApplyChanges(prefRef)
-                SCPreferencesSynchronize(prefRef)
-                
-                //                AuthorizationFree(authRef!, AuthorizationFlags())
-                
-                if commitRet && applyRet{
-                        return nil
-                }
-                NSLog("System proxy set result commitRet=\(commitRet), applyRet=\(applyRet)");
-                
-                return AppErr.system("apply proxy failed".localized)
-        }
-}
+//extension AppSetting{
+//
+//        static func initAuthorization() -> Error?{
+//                var status = AuthorizationCreate(nil, nil, AuthorizationFlags(), &authRef)
+//                if status != errAuthorizationSuccess{
+//                        return AppErr.system("create authRef failed")
+//                }
+//
+//
+//                let rightName = AppSetting.systemProxyAuthRightName
+//                var currentRight:CFDictionary?
+//                status = AuthorizationRightGet((rightName as NSString).utf8String! , &currentRight)
+//                if (status == errAuthorizationDenied) {
+//                        status = AuthorizationRightSet(authRef!, (rightName as NSString).utf8String!, rightDefaultRule as CFDictionary, "Change system proxy settings." as CFString, nil, "Common" as CFString)
+//                        if (status != errAuthorizationSuccess) {
+//                                return AppErr.system("AuthorizationRightSet failed")
+//                        }
+//                }
+//
+//                var authItem = AuthorizationItem(name: (rightName as NSString).utf8String!,
+//                                                 valueLength: 0,
+//                                                 value:UnsafeMutableRawPointer(bitPattern: 0),
+//                                                 flags: 0)
+//                var authRights = AuthorizationRights(count:1, items: withUnsafeMutablePointer(to:&authItem){
+//                        p in
+//                        return p
+//                })
+//
+//                let authFlags:AuthorizationFlags = [.extendRights , .interactionAllowed, .preAuthorize, .partialRights]
+//                status = AuthorizationCopyRights(authRef!, &authRights, nil,authFlags, nil);
+//                if (status != errAuthorizationSuccess) {
+//                        return AppErr.system("AuthorizationCopyRights failed:\(status)")
+//                }
+//                return nil
+//
+//        }
+//
+//        static func setupProxySetting(on:Bool)->Error?{
+//
+//                guard let prefRef = SCPreferencesCreateWithAuthorization(kCFAllocatorDefault, "TheBigDipper" as CFString, nil, authRef!)else{
+//                        return AppErr.system("create preference failed")
+//                }
+//
+//                guard let networkSets = SCPreferencesGetValue(prefRef, kSCPrefNetworkServices) else{
+//                        return AppErr.system("no valid netowrk service setting")
+//                }
+//
+//                var proxySettings: [String:AnyObject] = [:]
+//
+//                if on{
+//                        proxySettings[kCFNetworkProxiesSOCKSProxy as String] = "127.0.0.1" as AnyObject
+//                        proxySettings[kCFNetworkProxiesSOCKSPort as String] = AppConstants.ProxyLocalPort as AnyObject
+//                        proxySettings[kCFNetworkProxiesSOCKSEnable as String] = 1 as AnyObject
+//                        proxySettings[kCFNetworkProxiesExceptionsList as String] = [
+//                                "192.168.0.0/16",
+//                                "10.0.0.0/8",
+//                                "172.16.0.0/12",
+//                                "127.0.0.1",
+//                                "localhost",
+//                                "*.local"
+//                        ] as AnyObject
+//
+//                }else{
+//                        proxySettings[kCFNetworkProxiesSOCKSEnable as String] = 0 as AnyObject
+//                        proxySettings[kCFNetworkProxiesSOCKSProxy as String] = "" as AnyObject
+//                        proxySettings[kCFNetworkProxiesSOCKSPort as String] = 0 as AnyObject
+//                        proxySettings[kCFNetworkProxiesExceptionsList as String] = [] as AnyObject
+//                }
+//
+//
+//                for key in networkSets.allKeys {
+//                        let dict = networkSets.object(forKey: key) as? NSDictionary
+//                        let hardware = ((dict?["Interface"]) as? NSDictionary)?["Hardware"] as? String
+//                        if hardware != "AirPort" && hardware != "Ethernet" && hardware != "Wi-Fi"{
+//                                continue
+//                        }
+//
+//
+//                        let path = "/\(kSCPrefNetworkServices)/\(key)/\(kSCEntNetProxies)"
+//                        SCPreferencesPathSetValue(prefRef, path as CFString, proxySettings as CFDictionary)
+//                }
+//
+//                let commitRet = SCPreferencesCommitChanges(prefRef)
+//                let applyRet = SCPreferencesApplyChanges(prefRef)
+//                SCPreferencesSynchronize(prefRef)
+//
+//                //                AuthorizationFree(authRef!, AuthorizationFlags())
+//
+//                if commitRet && applyRet{
+//                        return nil
+//                }
+//                NSLog("System proxy set result commitRet=\(commitRet), applyRet=\(applyRet)");
+//
+//                return AppErr.system("apply proxy failed".localized)
+//        }
+//}
 
 extension AppSetting{
         
@@ -320,5 +328,96 @@ extension AppSetting{
                         return nil
                 }
                 return String(data: password, encoding: .utf8)
+        }
+}
+
+
+extension AppSetting{
+        
+        static func ensureLaunchAgentsDirOwner () {
+                let dirPath = NSHomeDirectory() + "/Library/LaunchAgents"
+                let fileMgr = FileManager.default
+                if fileMgr.fileExists(atPath: dirPath) {
+                        do {
+                                let attrs = try fileMgr.attributesOfItem(atPath: dirPath)
+                                if attrs[FileAttributeKey.ownerAccountName] as! String != NSUserName() {
+                                        //try fileMgr.setAttributes([FileAttributeKey.ownerAccountName: NSUserName()], ofItemAtPath: dirPath)
+                                        let bashFilePath = Bundle.main.path(forResource: "fix_dir_owner.sh", ofType: nil)!
+                                        let script = "do shell script \"bash \\\"\(bashFilePath)\\\" \(NSUserName()) \" with administrator privileges"
+                                        if let appleScript = NSAppleScript(source: script) {
+                                                var err: NSDictionary? = nil
+                                                appleScript.executeAndReturnError(&err)
+                                        }
+                                }
+                        }
+                        catch {
+                                NSLog("Error when ensure the owner of $HOME/Library/LaunchAgents, \(error.localizedDescription)")
+                        }
+                }
+        }
+        public static func checkVersion() -> Bool {
+                let task = Process()
+                task.launchPath = kProxyConfigPath
+                task.arguments = ["version"]
+                
+                let pipe = Pipe()
+                task.standardOutput = pipe
+                let fd = pipe.fileHandleForReading
+                task.launch()
+                
+                task.waitUntilExit()
+                
+                if task.terminationStatus != 0 {
+                        return false
+                }
+                
+                let res = String(data: fd.readDataToEndOfFile(), encoding: String.Encoding.utf8) ?? ""
+                if res.contains(AppConstants.CMD_LINE_VER) {
+                        return true
+                }
+                return false
+        }
+        static func setupProxySetting(on:Bool)->Error?{
+                let task = Process()
+                task.launchPath = kProxyConfigPath
+                var arg = ""
+                if on{
+                        arg = "start"
+                }else{
+                        arg = "stop"
+                }
+                task.arguments = [arg]
+                
+                let pipe = Pipe()
+                task.standardOutput = pipe
+                let fd = pipe.fileHandleForReading
+                task.launch()
+                
+                task.waitUntilExit()
+                
+                if task.terminationStatus != 0 {
+                        let res = String(data: fd.readDataToEndOfFile(), encoding: String.Encoding.utf8) ?? ""
+                        return AppErr.conf(res)
+                }
+                
+               return nil
+        }
+        
+        public static func install() -> Bool {
+                
+                let fileManager = FileManager.default
+                if !fileManager.fileExists(atPath: kProxyConfigPath) || !checkVersion() {
+                        
+                        let scriptPath = "\(Bundle.main.resourcePath!)/install_proxy_helper.sh"
+                        
+                        let myAppleScript = """
+                                        do shell script \"/bin/bash \\\"\(scriptPath)\\\"\" with administrator privileges
+                                """
+                        let appleScript = NSAppleScript(source: myAppleScript)
+                        var dict: NSDictionary?
+                        let _ = appleScript?.executeAndReturnError(&dict)
+                        return dict == nil
+                }
+                return true
         }
 }

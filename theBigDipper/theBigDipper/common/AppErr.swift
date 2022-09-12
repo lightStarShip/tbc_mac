@@ -12,6 +12,7 @@ public enum AppErr: Error,LocalizedError {
         case conf(String)
         case stripe(String)
         case wallet(String)
+        case proxySet(String)
         
         public var errorDescription: String? {
                 
@@ -21,6 +22,7 @@ public enum AppErr: Error,LocalizedError {
                 case .conf(let err): return "\(err)"
                 case .stripe(let err): return "\(err)"
                 case .wallet(let err): return "\(err)"
+                case .proxySet(let err): return "\(err)"
                 }
         }
 }

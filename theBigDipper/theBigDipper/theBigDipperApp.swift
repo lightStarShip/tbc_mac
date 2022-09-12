@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 @main
 struct theBigDipperApp: App {
         // swiftlint:disable:next weak_delegate
@@ -29,6 +28,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         func applicationDidFinishLaunching(_ aNotification: Notification) {
                 AppDelegate.instance = self
+//                NSUserNotificationCenter.default.delegate = self
                 
                 statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
                 statusItem.button?.image = NSImage(named: NSImage.Name("logo"))
@@ -36,6 +36,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 statusItem.menu = menu.build()
                 
                 AppSetting.initSettting()
+                
                 if let subAddr = Wallet.WInst.SubAddress {
                         var pwd = AppSetting.readPassword(service: AppConstants.SERVICE_NME_FOR_OSS,
                                                           account: subAddr)
