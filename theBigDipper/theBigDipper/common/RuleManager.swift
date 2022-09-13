@@ -35,6 +35,7 @@ class RuleManager:NSObject{
                         rVer!.mustStr = loadTxtStr("must_hit")
                         rVer!.priceStr = ""
                         rVer!.nodeStr = ""
+                        rVer!.macVer = -1
                         
                         PersistenceController.shared.saveContext()
                 }
@@ -53,10 +54,14 @@ class RuleManager:NSObject{
                         let jsonVer = JSON(parseJSON: version)
                         let dns_ver = jsonVer["dns"].int32 ?? -1
                         let ip_ver = jsonVer["by_pass"].int32 ?? -1
+                        let mac_ver = jsonVer["macVer"].int32 ?? -1
                         let must_ver = jsonVer["must_hit"].int32 ?? -1
                         let node_ver = jsonVer["config"].int32 ?? -1
                         let price_ver = jsonVer["price"].int32 ?? -1
                         PriceItem.currency = jsonVer["dollar"].string ?? "cny"
+                        if mac_ver > rVer!.macVer{
+                                rVer!.macVer = mac_ver
+                        }
                         var needSave = false
                         if dns_ver > rVer!.dnsVer{
                                 if let dnsStr = RuleDataLoad(){

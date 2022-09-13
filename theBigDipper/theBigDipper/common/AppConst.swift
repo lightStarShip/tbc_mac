@@ -7,6 +7,13 @@
 
 import Foundation
 public struct AppConstants {
+        
+        static public var APP_VER: String? {
+                let ver =  Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "-"
+                let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "-"
+                return "\(ver).\(build)"
+        }
+        
         static public let CMD_LINE_VER = "1.0.1"
         static public let DBNAME_RuleVer = "CDRuleVersion"
         static public let DBNAME_WALLET = "CDWallet"

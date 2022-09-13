@@ -17,6 +17,7 @@
         <attribute name="dollarSign" optional="YES" attributeType="String"/>
         <attribute name="ipStr" optional="YES" attributeType="String"/>
         <attribute name="ipVer" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="macVer" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="mustStr" optional="YES" attributeType="String"/>
         <attribute name="mustVer" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="nodeStr" optional="YES" attributeType="String"/>
@@ -36,10 +37,10 @@
         <attribute name="walletJSON" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="CDRuleVersion" positionX="-63" positionY="-9" width="128" height="194"/>
         <element name="CDAppSetting" positionX="-54" positionY="81" width="128" height="89"/>
+        <element name="CDNode" positionX="0" positionY="108" width="128" height="74"/>
+        <element name="CDRuleVersion" positionX="-63" positionY="-9" width="128" height="209"/>
         <element name="CDStripe" positionX="-36" positionY="90" width="128" height="89"/>
         <element name="CDWallet" positionX="-18" positionY="99" width="128" height="74"/>
-        <element name="CDNode" positionX="0" positionY="108" width="128" height="74"/>
     </elements>
 </model>

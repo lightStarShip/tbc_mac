@@ -121,3 +121,25 @@ func OpenImgFilePath()->URL? {
         return nil
         
 }
+
+
+func generateQRCode(from message: String) -> NSImage? {
+        
+        guard let data = message.data(using: .utf8) else{
+                return nil
+        }
+        
+        guard let qr = CIFilter(name: "CIQRCodeGenerator",
+                                parameters: ["inputMessage":
+                                                data, "inputCorrectionLevel":"M"]) else{
+                return nil
+        }
+        
+        guard let qrImage = qr.outputImage?.transformed(by: CGAffineTransform(scaleX: 5, y: 5)) else{
+                return nil
+        }
+        let context = CIContext()
+        let cgImage = context.createCGImage(qrImage, from: qrImage.extent)
+        let uiImage = NSImage(cgImage: cgImage!, size: qrImage.extent.size)
+        return uiImage
+}

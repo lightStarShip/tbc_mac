@@ -13,7 +13,9 @@ class MainMenu: NSObject {
         
         let menu = NSMenu()
         var nodeListMenu = NSMenu()
-        var accountWindow:AccountManager?
+        var accountImport:AccountManager?
+        var helpWindow:HelpToRecharge?
+        var accInfo:AccountBalance?
         
         private var popover:NSPopover?
         
@@ -46,6 +48,15 @@ class MainMenu: NSObject {
                 menu.setSubmenu(nodeListMenu, for: nodeItem)
                 
                 
+                let accInfo = NSMenuItem(
+                        title: "Account",
+                        action: #selector(showAccountInfo),
+                        keyEquivalent: ""
+                )
+                accInfo.target = self
+                menu.addItem(accInfo)
+                
+                
                 let copyProxy = NSMenuItem(
                         title: "Copy Command Line".localized,
                         action: #selector(copyCmdLine),
@@ -63,7 +74,6 @@ class MainMenu: NSObject {
                 menu.addItem(aboutMenuItem)
                 
                 menu.addItem(NSMenuItem.separator())
-                
                 
                 let quitMenuItem = NSMenuItem(
                         title: "Quit KyanBar",
@@ -114,7 +124,26 @@ class MainMenu: NSObject {
         }
         
         @objc func showHelpToRecharge(sender: NSMenuItem) {
-                //TODO::
+                if(helpWindow == nil) {
+                        helpWindow = HelpToRecharge(windowNibName: "HelpToRecharge")
+                        helpWindow!.showWindow(nil)
+                }
+                NSApp.setActivationPolicy(.accessory)
+                NSApp.activate(ignoringOtherApps: true)
+                helpWindow!.window?.orderFrontRegardless()
+        }
+        
+        
+        
+        @objc func showAccountInfo(sender: NSMenuItem) {
+                if(accInfo == nil) {
+                        accInfo = AccountBalance(windowNibName: "AccountBalance")
+                        accInfo!.showWindow(nil)
+                }
+                NSApp.setActivationPolicy(.accessory)
+                NSApp.activate(ignoringOtherApps: true)
+                accInfo!.window?.orderFrontRegardless()
+                accInfo?.setAccInfo()
         }
         
         @objc func reloadNodeNenu(_ notification: Notification?) {
@@ -181,14 +210,14 @@ class MainMenu: NSObject {
         }
         
         private func showAccountImport(){
-                if(accountWindow == nil) {
-                        accountWindow = AccountManager(windowNibName: "AccountManager")
-                        accountWindow!.showWindow(nil)
+                if(accountImport == nil) {
+                        accountImport = AccountManager(windowNibName: "AccountManager")
+                        accountImport!.showWindow(nil)
                 }
                 NSApp.setActivationPolicy(.accessory)
                 NSApp.activate(ignoringOtherApps: true)
-                accountWindow!.window?.orderFrontRegardless()
-                accountWindow?.resetContent()
+                accountImport!.window?.orderFrontRegardless()
+                accountImport?.resetContent()
         }
         
         @objc func quit(sender: NSMenuItem) {
