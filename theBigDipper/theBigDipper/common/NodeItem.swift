@@ -84,4 +84,8 @@ class NodeItem : NSObject {
                 
                 return AppErr.lib("change node err:\(String(cString: err))")
         }
+        
+        public func menuTitle()->String{
+                return String(format: "%@        %0.2f ms",self.location, self.pings)
+        }
 }

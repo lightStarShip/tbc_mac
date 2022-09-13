@@ -8,6 +8,7 @@
 
 import Cocoa
 import SwiftUI
+import SimpleLib
 
 class MainMenu: NSObject {
         
@@ -146,10 +147,43 @@ class MainMenu: NSObject {
                 accInfo?.setAccInfo()
         }
         
+        @objc func testAllNode(sender: NSMenuItem) {
+                
+                let dispatchGrp = DispatchGroup()
+                for node in NodeItem.vipNodes{
+                        dispatchGrp.enter()
+                        AppSetting.workQueue.async(group:dispatchGrp) {
+                                defer{ dispatchGrp.leave()}
+                                node.pings = LibGetPingVal(node.wallet.toGoString(), node.ipStr.toGoString())
+                        }
+                }
+                for node in NodeItem.freeNodes {
+                        dispatchGrp.enter()
+                        AppSetting.workQueue.async(group:dispatchGrp) {
+                                defer{ dispatchGrp.leave()}
+                                node.pings = LibGetPingVal(node.wallet.toGoString(), node.ipStr.toGoString())
+                        }
+                }
+                
+                dispatchGrp.notify(queue: DispatchQueue.main){
+                        self.reloadNodeNenu(nil)
+                }
+        }
+        
         @objc func reloadNodeNenu(_ notification: Notification?) {
                 nodeListMenu.removeAllItems()
                 
                 let curAddr = AppSetting.coreData?.minerAddrInUsed
+                let testButton = NSMenuItem(
+                        title: "Ping Test".localized,
+                        action: #selector(testAllNode),
+                        keyEquivalent: ""
+                )
+                
+                testButton.target = self
+                nodeListMenu.addItem(testButton)
+                
+                nodeListMenu.addItem(NSMenuItem.separator())
                 let freeTips = NSMenuItem(
                         title: "Free Nodes".localized,
                         action: nil,
@@ -160,7 +194,7 @@ class MainMenu: NSObject {
                 
                 for (idx,node) in NodeItem.freeNodes.enumerated() {
                         let nodeItem = NSMenuItem(
-                                title: node.location,
+                                title: node.menuTitle(),
                                 action: #selector(choseFreeNodeItem),
                                 keyEquivalent: ""
                         )
@@ -196,7 +230,7 @@ class MainMenu: NSObject {
                 
                 for (idx, node) in NodeItem.vipNodes.enumerated() {
                         let nodeItem = NSMenuItem(
-                                title: node.location,
+                                title: node.menuTitle(),
                                 action: #selector(choseVipNodeItem),
                                 keyEquivalent: ""
                         )
