@@ -79,7 +79,7 @@
                         </textFieldCell>
                     </textField>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FqL-7S-7eD">
-                        <rect key="frame" x="471" y="329" width="58" height="56"/>
+                        <rect key="frame" x="471" y="344" width="58" height="56"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="44" id="M0E-GH-sxO"/>
                             <constraint firstAttribute="width" constant="44" id="ega-qn-0i4"/>
@@ -108,7 +108,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="FqL-7S-7eD" secondAttribute="trailing" constant="20" symbolic="YES" id="9Ga-0H-U74"/>
-                    <constraint firstItem="FqL-7S-7eD" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" symbolic="YES" id="9wo-hJ-tp9"/>
+                    <constraint firstItem="FqL-7S-7eD" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="5" id="9wo-hJ-tp9"/>
                     <constraint firstAttribute="bottom" secondItem="qB6-3x-bze" secondAttribute="bottom" constant="60" id="Cjp-xu-9ae"/>
                     <constraint firstItem="6JE-b0-xw6" firstAttribute="top" secondItem="0QQ-E9-ezd" secondAttribute="bottom" constant="20" id="Hoc-2M-Dq9"/>
                     <constraint firstItem="DBe-T7-Bc8" firstAttribute="leading" secondItem="0QQ-E9-ezd" secondAttribute="trailing" constant="8" symbolic="YES" id="IXA-sK-aOA"/>
