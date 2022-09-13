@@ -19,6 +19,12 @@ class AccountBalance: NSWindowController {
         }
         
         @IBAction func copyAccID(_ sender: NSButton) {
+                guard let cusID = Stripe.SInst.customerID else{
+                        return
+                }
+                let pasteBoard = NSPasteboard.general
+                pasteBoard.clearContents()
+                pasteBoard.setString(cusID, forType: .string)
         }
         
         func setAccInfo(){
