@@ -66,7 +66,7 @@ class MainMenu: NSObject {
                 menu.addItem(copyProxy)
                 
                 let aboutMenuItem = NSMenuItem(
-                        title: "About KyanBar",
+                        title: "About TheBigDipper",
                         action: #selector(about),
                         keyEquivalent: ""
                 )
@@ -76,7 +76,7 @@ class MainMenu: NSObject {
                 menu.addItem(NSMenuItem.separator())
                 
                 let quitMenuItem = NSMenuItem(
-                        title: "Quit KyanBar",
+                        title: "Quit",
                         action: #selector(quit),
                         keyEquivalent: "q"
                 )
