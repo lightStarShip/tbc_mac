@@ -80,7 +80,9 @@ class Stripe:NSObject{
                 self.walletAddr = walletAddr
                 self.customerID = self.coreData!.customerID
                 
-                loadStripeInfoFromServer(walletAddr: walletAddr)
+                loadStripeInfoFromServer(walletAddr: walletAddr){_ in
+                        PostNoti(AppConstants.NOTI_NODE_LIST_UPDATE)
+                }
                 
                 return
         }

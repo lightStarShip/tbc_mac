@@ -33,11 +33,6 @@ class AccountBalance: NSWindowController {
                         accountQR.image = generateQRCode(from: cusID)
                 }
                 
-                if !Stripe.SInst.IsVipUser(){
-                        balance.stringValue = "Free User"
-                        return
-                }
-                
                 balance.stringValue = String(format: "%.2f", Stripe.SInst.getBalanceInDays())
         }
 }

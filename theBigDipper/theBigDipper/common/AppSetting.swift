@@ -67,6 +67,8 @@ class AppSetting:NSObject{
                 
                 ensureLaunchAgentsDirOwner()
                 
+                print("------>>>debug:", AppSetting.StripeDebugMode)
+                
                 InitLib(AppSetting.StripeDebugMode,
                         LogLevel.debug.rawValue,
                         AppConstants.ConfigUrl.toGoString(),
@@ -83,6 +85,8 @@ class AppSetting:NSObject{
                 }
                 
                 AppSetting.coreData = setting
+                
+                _ =  Wallet.WInst
                 
                 RuleManager.rInst.loadRulsByVersion()
                 

@@ -30,7 +30,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         func applicationDidFinishLaunching(_ aNotification: Notification) {
                 AppDelegate.instance = self
 //                NSUserNotificationCenter.default.delegate = self
-                
                 statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
                 statusItem.button?.image = NSImage(named: NSImage.Name("logo"))
                 statusItem.button?.imagePosition = .imageLeading
