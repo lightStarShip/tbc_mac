@@ -1,0 +1,21 @@
+/* 
+  Localizable.strings
+  theBigDipper
+
+  Created by wesley on 2022/9/14.
+  
+*/
+"Turn On"="启动VPN";
+""="";
+"node List"="节点列表";
+"Account"="账号信息";
+"Copy Command Line"="命令行指令";
+"About TheBigDipper"="关于北斗星";
+"Quit"="退出";
+"Error"="错误";
+"Ping Test"="测试节点速度";
+"Free Nodes"="免费节点";
+"VIP Recharge"="VIP充值";
+"Vip Nodes"="付费节点";
+"setup proxy failed"="设置网络代理失败";
+"Turn Off"="关闭VPN";

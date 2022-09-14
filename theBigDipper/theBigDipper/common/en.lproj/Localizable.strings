@@ -1,8 +1,7 @@
 /* 
-  InfoPlist.strings
+  Localizable.strings
   theBigDipper
 
   Created by wesley on 2022/9/14.
   
 */
-CFBundleDisplayName = "北斗星";
