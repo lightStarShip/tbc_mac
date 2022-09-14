@@ -29,6 +29,13 @@ extension String {
         }
 }
 
+func VersionToInt(ver:String)->Int32{
+        let result = ver.split(separator: ".")
+        if result.count != 3{
+                return -1
+        }
+        return (result[0] as NSString).intValue * 10000 + (result[1] as NSString).intValue * 100 + (result[2] as NSString).intValue
+}
 
 func dialogOK(question: String, text: String) -> Void {DispatchQueue.main.async {
         let alert = NSAlert()

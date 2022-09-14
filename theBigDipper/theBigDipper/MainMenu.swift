@@ -76,8 +76,17 @@ class MainMenu: NSObject {
                 helpWebMenuItem.target = self
                 menu.addItem(helpWebMenuItem)
                 
+                
+                let checkUpdateMenuItem = NSMenuItem(
+                        title: "Check Upate".localized,
+                        action: #selector(checkUpdate),
+                        keyEquivalent: ""
+                )
+                checkUpdateMenuItem.target = self
+                menu.addItem(checkUpdateMenuItem)
+                
                 let aboutMenuItem = NSMenuItem(
-                        title: "About TheBigDipper".localized,
+                        title: "About TheBigDipper".localized + "\t\(AppSetting.APP_VER)",
                         action: #selector(about),
                         keyEquivalent: ""
                 )
@@ -95,9 +104,21 @@ class MainMenu: NSObject {
                 
                 menu.addItem(quitMenuItem)
                 
+                print("*******************=>:", AppSetting.APP_VER)
+                
                 return menu
         }
         
+        @objc func checkUpdate(sender: NSMenuItem) {
+                let cur_ver = VersionToInt(ver: AppSetting.APP_VER)
+                guard cur_ver < RuleManager.rInst.latstAPPVer() else{
+                        dialogOK(question: "Success".localized, text: "Current Version Is Fine".localized)
+                        return
+                }
+                
+                let url = URL(string: AppConstants.WebSite)!
+                NSWorkspace.shared.open(url)
+        }
         @objc func findHelp(sender: NSMenuItem) {
                 let url = URL(string: AppConstants.WebSite)!
                 NSWorkspace.shared.open(url)
@@ -148,8 +169,6 @@ class MainMenu: NSObject {
                 NSApp.activate(ignoringOtherApps: true)
                 helpWindow!.window?.orderFrontRegardless()
         }
-        
-        
         
         @objc func showAccountInfo(sender: NSMenuItem) {
                 if(accInfo == nil) {
@@ -298,6 +317,7 @@ class MainMenu: NSObject {
                         return
                 }
                 sender.title = "Turn Off".localized
+                dialogOK(question: "Success".localized, text: "Start Success".localized)
         }
 }
 

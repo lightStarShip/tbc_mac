@@ -59,7 +59,8 @@ class RuleManager:NSObject{
                         let node_ver = jsonVer["config"].int32 ?? -1
                         let price_ver = jsonVer["price"].int32 ?? -1
                         PriceItem.currency = jsonVer["dollar"].string ?? "cny"
-                        if mac_ver > rVer!.macVer{
+                        
+                        if mac_ver != rVer!.macVer{
                                 rVer!.macVer = mac_ver
                         }
                         var needSave = false
@@ -139,5 +140,9 @@ class RuleManager:NSObject{
         
         func innerIPStr()->String{
                 return coreData?.ipStr ?? ""
+        }
+        
+        func latstAPPVer()->Int32{
+                return coreData?.macVer ?? -1
         }
 }

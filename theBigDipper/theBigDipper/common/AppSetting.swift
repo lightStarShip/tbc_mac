@@ -13,15 +13,14 @@ import SystemConfiguration
 import SecurityInterface
 
 class AppSetting:NSObject{
+        static public var APP_VER: String {
+                guard let ver =  Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String, let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String  else{
+                        return ""
+                }
+                return "\(ver).\(build)"
+        }
         
         static let kProxyConfigPath = "/Library/Application Support/TheBigDipper/ProxyConfig"
-        
-        //        static let PACServerPort = 31087;
-        //        static let kDefaultPacURL = "http://127.0.0.1:\(PACServerPort)/proxy.pac";
-        public static let systemProxyAuthRightName = "com.stars.tbd.mac-proxy_v7"
-        static var authRef: AuthorizationRef? = nil
-        
-        //        static let authorization = SFAuthorization.authorization() as! SFAuthorization
         
         static var coreData:CDAppSetting?
         
@@ -30,14 +29,6 @@ class AppSetting:NSObject{
 #else
         public static var StripeDebugMode:Int8 = 0
 #endif
-        
-        static let rightDefaultRule: [String:Any] = [
-                "key" : systemProxyAuthRightName,
-                "class" : "user",
-                "group" : "admin",
-                "version" : 1 ,
-                "timeout": 0]
-        
         
         enum LogLevel:Int8{
                 case debug = 0
