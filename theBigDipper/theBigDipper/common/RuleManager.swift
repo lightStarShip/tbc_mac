@@ -98,7 +98,7 @@ class RuleManager:NSObject{
                                 if let nodeStr = NodeConfigData() {
                                         rVer?.nodeVer = node_ver
                                         rVer?.nodeStr = String(cString: nodeStr)
-                                        NodeItem.fullFillNodes(jsonStr: rVer?.nodeStr)
+                                        NodeItem.fullFillNodes(jsonStr: rVer?.nodeStr, needNoti: true)
                                 }else{
                                         NSLog("------>>> load node config failed:")
                                 }

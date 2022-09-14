@@ -205,16 +205,17 @@ class MainMenu: NSObject {
         }
         
         @objc func reloadNodeNenu(_ notification: Notification?) {
+                
+                print("--------<>>>>>>>")
                 nodeListMenu.removeAllItems()
                 
                 let curAddr = AppSetting.coreData?.minerAddrInUsed
-                let testButton = NSMenuItem(
-                        title: "Ping Test".localized,
-                        action: #selector(testAllNode),
-                        keyEquivalent: ""
-                )
                 
-                testButton.target = self
+                
+               let buttont = NSButton(title: "Ping Test", target: self, action: #selector(testAllNode))
+                let testButton = NSMenuItem()
+                testButton.view = buttont
+                
                 nodeListMenu.addItem(testButton)
                 
                 nodeListMenu.addItem(NSMenuItem.separator())

@@ -30,7 +30,7 @@ class NodeItem : NSObject {
                 self.isFree = json["free"].bool ?? false
         }
         
-        public static func fullFillNodes(jsonStr:String?){
+        public static func fullFillNodes(jsonStr:String?, needNoti:Bool?=false){
                 guard let str = jsonStr, !str.isEmpty else{
                         return
                 }
@@ -45,7 +45,9 @@ class NodeItem : NSObject {
                                 vipNodes.append(item)
                         }
                 }
-                PostNoti(AppConstants.NOTI_NODE_LIST_UPDATE)
+                if needNoti == true{
+                        PostNoti(AppConstants.NOTI_NODE_LIST_UPDATE)
+                }
         }
         
         public static func GetNode(addr:String?) -> NodeItem?{
