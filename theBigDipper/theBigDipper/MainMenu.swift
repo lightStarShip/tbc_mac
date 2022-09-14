@@ -205,8 +205,6 @@ class MainMenu: NSObject {
         }
         
         @objc func reloadNodeNenu(_ notification: Notification?) {
-                
-                print("--------<>>>>>>>")
                 nodeListMenu.removeAllItems()
                 
                 let curAddr = AppSetting.coreData?.minerAddrInUsed
