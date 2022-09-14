@@ -20,6 +20,28 @@ class RuleManager:NSObject{
                 super.init()
         }
         
+        func loadMacVersion(callback:((Bool)->())?=nil) { AppSetting.workQueue.async {
+                let cur_ver = VersionToInt(ver: AppSetting.APP_VER)
+                if let localVer = self.coreData?.macVer, localVer > cur_ver{
+                        callback?(true)
+                        return
+                }
+                
+                guard let verData = RuleVerInt() else{
+                        NSLog("------>>>load rule version faile")
+                        return
+                }
+                let version = String(cString: verData)
+                let jsonVer = JSON(parseJSON: version)
+                let mac_ver = jsonVer["macVer"].int32 ?? -1
+                if mac_ver > cur_ver{
+                        callback?(mac_ver > cur_ver)
+                        self.coreData?.macVer = mac_ver
+                }else{
+                        callback?(false)
+                }
+        }}
+        
         func loadRulsByVersion() {
                 
                 var rVer = PersistenceController.shared.findOneEntity(AppConstants.DBNAME_RuleVer) as? CDRuleVersion
@@ -60,10 +82,11 @@ class RuleManager:NSObject{
                         let price_ver = jsonVer["price"].int32 ?? -1
                         PriceItem.currency = jsonVer["dollar"].string ?? "cny"
                         
+                        var needSave = false
                         if mac_ver != rVer!.macVer{
                                 rVer!.macVer = mac_ver
+                                needSave = true
                         }
-                        var needSave = false
                         if dns_ver > rVer!.dnsVer{
                                 if let dnsStr = RuleDataLoad(){
                                         rVer?.dnsStr = String(cString: dnsStr)

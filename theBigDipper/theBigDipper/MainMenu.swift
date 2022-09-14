@@ -110,14 +110,15 @@ class MainMenu: NSObject {
         }
         
         @objc func checkUpdate(sender: NSMenuItem) {
-                let cur_ver = VersionToInt(ver: AppSetting.APP_VER)
-                guard cur_ver < RuleManager.rInst.latstAPPVer() else{
-                        dialogOK(question: "Success".localized, text: "Current Version Is Fine".localized)
-                        return
-                }
                 
-                let url = URL(string: AppConstants.WebSite)!
-                NSWorkspace.shared.open(url)
+                RuleManager.rInst.loadMacVersion(){needUpdate in
+                        if !needUpdate{
+                                dialogOK(question: "Success".localized, text: "Current Version Is Fine".localized)
+                                return
+                        }
+                        let url = URL(string: AppConstants.WebSite)!
+                        NSWorkspace.shared.open(url)
+                }
         }
         @objc func findHelp(sender: NSMenuItem) {
                 let url = URL(string: AppConstants.WebSite)!
