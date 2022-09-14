@@ -82,7 +82,6 @@
                         <rect key="frame" x="191" y="344" width="338" height="56"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="44" id="M0E-GH-sxO"/>
-                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="ega-qn-0i4"/>
                         </constraints>
                         <buttonCell key="cell" type="push" title="Copy" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="rha-an-0Q9">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
