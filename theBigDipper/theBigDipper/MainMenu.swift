@@ -25,7 +25,7 @@ class MainMenu: NSObject {
                 NotificationCenter.default.addObserver(self, selector: #selector(reloadNodeNenu(_:)),
                                                        name: AppConstants.NOTI_NODE_LIST_UPDATE, object: nil)
                 menu.addItem(NSMenuItem.separator())
-                
+                menu.delegate = self
                 // Adding a seperator
                 let setupNetworkItem = NSMenuItem(
                         title: "Turn On".localized,
@@ -56,6 +56,7 @@ class MainMenu: NSObject {
                         keyEquivalent: ""
                 )
                 accInfo.target = self
+                
                 menu.addItem(accInfo)
                 
                 
@@ -297,5 +298,11 @@ class MainMenu: NSObject {
                         return
                 }
                 sender.title = "Turn Off".localized
+        }
+}
+
+extension MainMenu:NSMenuDelegate{
+        func menuDidClose(_ menu: NSMenu) {
+                print("*********************>>>:",menu.items.count)
         }
 }
