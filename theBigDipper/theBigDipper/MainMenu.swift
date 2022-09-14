@@ -32,7 +32,7 @@ class MainMenu: NSObject {
                         action: #selector(setupNetwork),
                         keyEquivalent: ""
                 )
-                print("Turn On".localized)
+                
                 setupNetworkItem.target = self
                 menu.addItem(setupNetworkItem)
                 
