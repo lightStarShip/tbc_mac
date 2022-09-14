@@ -25,6 +25,7 @@ public struct AppConstants {
         
         
         static public let ConfigUrl = "https://lightstarship.github.io"
+        static public let WebSite = "https://stars.simplenets.org./"
         
         static public let NOTI_NODE_LIST_UPDATE = Notification.Name("NOTI_NODE_LIST_UPDATE")
         static public let NOTI_PRICE_LIST_UPDATE = Notification.Name("NOTI_NODE_LIST_UPDATE")

@@ -67,6 +67,14 @@ class MainMenu: NSObject {
                 copyProxy.target = self
                 menu.addItem(copyProxy)
                 
+                let helpWebMenuItem = NSMenuItem(
+                        title: "Find Help".localized,
+                        action: #selector(findHelp),
+                        keyEquivalent: ""
+                )
+                helpWebMenuItem.target = self
+                menu.addItem(helpWebMenuItem)
+                
                 let aboutMenuItem = NSMenuItem(
                         title: "About TheBigDipper".localized,
                         action: #selector(about),
@@ -87,6 +95,11 @@ class MainMenu: NSObject {
                 menu.addItem(quitMenuItem)
                 
                 return menu
+        }
+        
+        @objc func findHelp(sender: NSMenuItem) {
+                let url = URL(string: AppConstants.WebSite)!
+                NSWorkspace.shared.open(url)
         }
         
         @objc func copyCmdLine(sender: NSMenuItem) {
