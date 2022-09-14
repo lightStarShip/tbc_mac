@@ -1,0 +1,15 @@
+
+/* Class = "NSButtonCell"; title = "Import"; ObjectID = "CZo-4t-xpy"; */
+"CZo-4t-xpy.title" = "导入";
+
+/* Class = "NSWindow"; title = "Import Account"; ObjectID = "F0z-JX-Cv5"; */
+"F0z-JX-Cv5.title" = "导入账号";
+
+/* Class = "NSTextFieldCell"; placeholderString = "QR Image File Path"; ObjectID = "heB-yw-nw5"; */
+"heB-yw-nw5.placeholderString" = "二维码文件路径";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Wallet Data"; ObjectID = "juh-oA-W3a"; */
+"juh-oA-W3a.placeholderString" = "账号数据";
+
+/* Class = "NSButtonCell"; title = "Load QR Code"; ObjectID = "sEk-08-M6T"; */
+"sEk-08-M6T.title" = "加载二维码";

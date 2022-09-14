@@ -1,0 +1,24 @@
+
+/* Class = "NSWindow"; title = "Account Balance"; ObjectID = "F0z-JX-Cv5"; */
+"F0z-JX-Cv5.title" = "账号余额";
+
+/* Class = "NSTextFieldCell"; title = "Balance:"; ObjectID = "XZk-wi-ed9"; */
+"XZk-wi-ed9.title" = "余额:";
+
+/* Class = "NSTextFieldCell"; title = "Account id:"; ObjectID = "clA-uz-cY3"; */
+"clA-uz-cY3.title" = "账号:";
+
+/* Class = "NSTextFieldCell"; title = "Label"; ObjectID = "oiB-qE-TTO"; */
+"oiB-qE-TTO.title" = "Label";
+
+/* Class = "NSTextFieldCell"; title = "Block Chain Address:"; ObjectID = "ouL-kz-7rM"; */
+"ouL-kz-7rM.title" = "区块链地址:";
+
+/* Class = "NSTextFieldCell"; title = "Label"; ObjectID = "qZO-BX-k2s"; */
+"qZO-BX-k2s.title" = "Label";
+
+/* Class = "NSButtonCell"; title = "Copy"; ObjectID = "rha-an-0Q9"; */
+"rha-an-0Q9.title" = "复制地址";
+
+/* Class = "NSTextFieldCell"; title = "Label"; ObjectID = "utP-Qm-Tjz"; */
+"utP-Qm-Tjz.title" = "Label";

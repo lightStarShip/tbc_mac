@@ -50,7 +50,7 @@ class MainMenu: NSObject {
                 
                 
                 let accInfo = NSMenuItem(
-                        title: "Account",
+                        title: "Account".localized,
                         action: #selector(showAccountInfo),
                         keyEquivalent: ""
                 )
@@ -67,7 +67,7 @@ class MainMenu: NSObject {
                 menu.addItem(copyProxy)
                 
                 let aboutMenuItem = NSMenuItem(
-                        title: "About TheBigDipper",
+                        title: "About TheBigDipper".localized,
                         action: #selector(about),
                         keyEquivalent: ""
                 )
@@ -77,7 +77,7 @@ class MainMenu: NSObject {
                 menu.addItem(NSMenuItem.separator())
                 
                 let quitMenuItem = NSMenuItem(
-                        title: "Quit",
+                        title: "Quit".localized,
                         action: #selector(quit),
                         keyEquivalent: "q"
                 )

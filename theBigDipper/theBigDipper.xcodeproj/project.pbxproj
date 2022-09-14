@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		69172A6928D17CC400AED581 /* AccountBalance.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69172A6B28D17CC400AED581 /* AccountBalance.xib */; };
+		69172A6F28D17F7900AED581 /* AccountManager.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69172A7128D17F7900AED581 /* AccountManager.xib */; };
+		69172A7828D1802300AED581 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 69172A7A28D1802300AED581 /* InfoPlist.strings */; };
 		69187B7F28D080A900048534 /* AccountBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69187B7D28D080A900048534 /* AccountBalance.swift */; };
 		69187B8328D0853F00048534 /* HelpToRecharge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69187B8128D0853F00048534 /* HelpToRecharge.swift */; };
 		69187B8428D0853F00048534 /* HelpToRecharge.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69187B8228D0853F00048534 /* HelpToRecharge.xib */; };
@@ -35,7 +37,6 @@
 		69AAA8D028BF387E003E5BE1 /* GCDWebServers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69AAA8CF28BF387E003E5BE1 /* GCDWebServers.framework */; };
 		69AAA8D128BF387E003E5BE1 /* GCDWebServers.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 69AAA8CF28BF387E003E5BE1 /* GCDWebServers.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		69B35F8B28C9B65B003E6170 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B35F8928C9B65B003E6170 /* AccountManager.swift */; };
-		69B35F8C28C9B65B003E6170 /* AccountManager.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69B35F8A28C9B65B003E6170 /* AccountManager.xib */; };
 		69DD56E028C5E4D200A464FA /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69DD56DF28C5E4D200A464FA /* Security.framework */; };
 		69DD56E228C5E51E00A464FA /* SecurityFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69DD56E128C5E51E00A464FA /* SecurityFoundation.framework */; };
 		69DD56E428C5E52A00A464FA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69DD56E328C5E52A00A464FA /* Cocoa.framework */; };
@@ -89,6 +90,12 @@
 /* Begin PBXFileReference section */
 		69172A6A28D17CC400AED581 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AccountBalance.xib; sourceTree = "<group>"; };
 		69172A6D28D17CCD00AED581 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/AccountBalance.strings; sourceTree = "<group>"; };
+		69172A6E28D17F0F00AED581 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/AccountBalance.strings"; sourceTree = "<group>"; };
+		69172A7028D17F7900AED581 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AccountManager.xib; sourceTree = "<group>"; };
+		69172A7328D17F8000AED581 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/AccountManager.strings; sourceTree = "<group>"; };
+		69172A7528D17F8100AED581 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/AccountManager.strings"; sourceTree = "<group>"; };
+		69172A7928D1802300AED581 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		69172A7B28D1802800AED581 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		69187B7D28D080A900048534 /* AccountBalance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountBalance.swift; sourceTree = "<group>"; };
 		69187B8128D0853F00048534 /* HelpToRecharge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpToRecharge.swift; sourceTree = "<group>"; };
 		69187B8228D0853F00048534 /* HelpToRecharge.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HelpToRecharge.xib; sourceTree = "<group>"; };
@@ -114,7 +121,6 @@
 		69A24F8828C770A700156CE3 /* ImportAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportAccountView.swift; sourceTree = "<group>"; };
 		69AAA8CF28BF387E003E5BE1 /* GCDWebServers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GCDWebServers.framework; path = theBigDipper/Carthage/Build/Mac/GCDWebServers.framework; sourceTree = "<group>"; };
 		69B35F8928C9B65B003E6170 /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
-		69B35F8A28C9B65B003E6170 /* AccountManager.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountManager.xib; sourceTree = "<group>"; };
 		69DD56DF28C5E4D200A464FA /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		69DD56E128C5E51E00A464FA /* SecurityFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityFoundation.framework; path = System/Library/Frameworks/SecurityFoundation.framework; sourceTree = SDKROOT; };
 		69DD56E328C5E52A00A464FA /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -185,7 +191,7 @@
 				6955EDF428ABDEE800F50E3F /* MainMenu.swift */,
 				699CB50528C8B780006E661E /* AccountWindow.swift */,
 				69B35F8928C9B65B003E6170 /* AccountManager.swift */,
-				69B35F8A28C9B65B003E6170 /* AccountManager.xib */,
+				69172A7128D17F7900AED581 /* AccountManager.xib */,
 				69187B8128D0853F00048534 /* HelpToRecharge.swift */,
 				69187B8228D0853F00048534 /* HelpToRecharge.xib */,
 				69187B7D28D080A900048534 /* AccountBalance.swift */,
@@ -233,6 +239,7 @@
 				69F6899B28BCE76000968917 /* AppConst.swift */,
 				69F6899328BCCD9700968917 /* utils.swift */,
 				69E2B25C28BDE814002E23B5 /* AppErr.swift */,
+				69172A7A28D1802300AED581 /* InfoPlist.strings */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -314,6 +321,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 6955EDD328ABD87200F50E3F;
 			productRefGroup = 6955EDDD28ABD87200F50E3F /* Products */;
@@ -332,6 +340,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6943902D28CF4462005A9308 /* ProxyConfig in Resources */,
+				69172A7828D1802300AED581 /* InfoPlist.strings in Resources */,
 				69172A6928D17CC400AED581 /* AccountBalance.xib in Resources */,
 				6943902C28CF3E36005A9308 /* fix_dir_owner.sh in Resources */,
 				69F6899628BCD0F900968917 /* Cartfile in Resources */,
@@ -339,7 +348,7 @@
 				69A24F8228C72E7000156CE3 /* bypass2.txt in Resources */,
 				6955EDE728ABD87400F50E3F /* Preview Assets.xcassets in Resources */,
 				69187B8428D0853F00048534 /* HelpToRecharge.xib in Resources */,
-				69B35F8C28C9B65B003E6170 /* AccountManager.xib in Resources */,
+				69172A6F28D17F7900AED581 /* AccountManager.xib in Resources */,
 				69A24F8128C72E7000156CE3 /* must_hit.txt in Resources */,
 				6955EDE428ABD87400F50E3F /* Assets.xcassets in Resources */,
 				69E2B27428BE0125002E23B5 /* gfw.js in Resources */,
@@ -401,8 +410,28 @@
 			children = (
 				69172A6A28D17CC400AED581 /* Base */,
 				69172A6D28D17CCD00AED581 /* en */,
+				69172A6E28D17F0F00AED581 /* zh-Hans */,
 			);
 			name = AccountBalance.xib;
+			sourceTree = "<group>";
+		};
+		69172A7128D17F7900AED581 /* AccountManager.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				69172A7028D17F7900AED581 /* Base */,
+				69172A7328D17F8000AED581 /* en */,
+				69172A7528D17F8100AED581 /* zh-Hans */,
+			);
+			name = AccountManager.xib;
+			sourceTree = "<group>";
+		};
+		69172A7A28D1802300AED581 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				69172A7928D1802300AED581 /* en */,
+				69172A7B28D1802800AED581 /* zh-Hans */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -412,6 +441,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -473,6 +503,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -533,7 +564,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"theBigDipper/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
@@ -575,7 +606,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"theBigDipper/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
@@ -613,7 +644,7 @@
 				CODE_SIGN_ENTITLEMENTS = ProxyConfig/ProxyConfig.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = NO;
@@ -633,7 +664,7 @@
 				CODE_SIGN_ENTITLEMENTS = ProxyConfig/ProxyConfig.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = NO;

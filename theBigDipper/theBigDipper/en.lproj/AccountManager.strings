@@ -1,0 +1,15 @@
+
+/* Class = "NSButtonCell"; title = "Import"; ObjectID = "CZo-4t-xpy"; */
+"CZo-4t-xpy.title" = "Import";
+
+/* Class = "NSWindow"; title = "Import Account"; ObjectID = "F0z-JX-Cv5"; */
+"F0z-JX-Cv5.title" = "Import Account";
+
+/* Class = "NSTextFieldCell"; placeholderString = "QR Image File Path"; ObjectID = "heB-yw-nw5"; */
+"heB-yw-nw5.placeholderString" = "QR Image File Path";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Wallet Data"; ObjectID = "juh-oA-W3a"; */
+"juh-oA-W3a.placeholderString" = "Wallet Data";
+
+/* Class = "NSButtonCell"; title = "Load QR Code"; ObjectID = "sEk-08-M6T"; */
+"sEk-08-M6T.title" = "Load QR Code";
