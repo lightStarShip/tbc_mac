@@ -78,7 +78,7 @@ class MainMenu: NSObject {
                 
                 
                 let checkUpdateMenuItem = NSMenuItem(
-                        title: "Check Upate".localized,
+                        title: "Check Update".localized,
                         action: #selector(checkUpdate),
                         keyEquivalent: ""
                 )
