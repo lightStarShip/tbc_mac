@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		69172A6928D17CC400AED581 /* AccountBalance.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69172A6B28D17CC400AED581 /* AccountBalance.xib */; };
 		69187B7F28D080A900048534 /* AccountBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69187B7D28D080A900048534 /* AccountBalance.swift */; };
-		69187B8028D080A900048534 /* AccountBalance.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69187B7E28D080A900048534 /* AccountBalance.xib */; };
 		69187B8328D0853F00048534 /* HelpToRecharge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69187B8128D0853F00048534 /* HelpToRecharge.swift */; };
 		69187B8428D0853F00048534 /* HelpToRecharge.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69187B8228D0853F00048534 /* HelpToRecharge.xib */; };
 		6943902128CEF24C005A9308 /* AppErr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E2B25C28BDE814002E23B5 /* AppErr.swift */; };
@@ -87,8 +87,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		69172A6A28D17CC400AED581 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AccountBalance.xib; sourceTree = "<group>"; };
+		69172A6D28D17CCD00AED581 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/AccountBalance.strings; sourceTree = "<group>"; };
 		69187B7D28D080A900048534 /* AccountBalance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountBalance.swift; sourceTree = "<group>"; };
-		69187B7E28D080A900048534 /* AccountBalance.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountBalance.xib; sourceTree = "<group>"; };
 		69187B8128D0853F00048534 /* HelpToRecharge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpToRecharge.swift; sourceTree = "<group>"; };
 		69187B8228D0853F00048534 /* HelpToRecharge.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HelpToRecharge.xib; sourceTree = "<group>"; };
 		6943902328CF1A64005A9308 /* install_proxy_helper.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = install_proxy_helper.sh; sourceTree = "<group>"; };
@@ -188,7 +189,7 @@
 				69187B8128D0853F00048534 /* HelpToRecharge.swift */,
 				69187B8228D0853F00048534 /* HelpToRecharge.xib */,
 				69187B7D28D080A900048534 /* AccountBalance.swift */,
-				69187B7E28D080A900048534 /* AccountBalance.xib */,
+				69172A6B28D17CC400AED581 /* AccountBalance.xib */,
 				69A24F8828C770A700156CE3 /* ImportAccountView.swift */,
 				6955EDE328ABD87400F50E3F /* Assets.xcassets */,
 				6955EDE828ABD87400F50E3F /* Persistence.swift */,
@@ -331,7 +332,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6943902D28CF4462005A9308 /* ProxyConfig in Resources */,
-				69187B8028D080A900048534 /* AccountBalance.xib in Resources */,
+				69172A6928D17CC400AED581 /* AccountBalance.xib in Resources */,
 				6943902C28CF3E36005A9308 /* fix_dir_owner.sh in Resources */,
 				69F6899628BCD0F900968917 /* Cartfile in Resources */,
 				6943902428CF1A64005A9308 /* install_proxy_helper.sh in Resources */,
@@ -393,6 +394,18 @@
 			targetProxy = 6943902928CF3D58005A9308 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		69172A6B28D17CC400AED581 /* AccountBalance.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				69172A6A28D17CC400AED581 /* Base */,
+				69172A6D28D17CCD00AED581 /* en */,
+			);
+			name = AccountBalance.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		6955EDEE28ABD87400F50E3F /* Debug */ = {
