@@ -27,27 +27,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         private var menu = MainMenu()
         
         func applicationDidFinishLaunching(_ aNotification: Notification) {
+                
                 AppDelegate.instance = self
-//                NSUserNotificationCenter.default.delegate = self
+                
                 statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
                 statusItem.button?.image = NSImage(named: NSImage.Name("logo"))
                 statusItem.button?.imagePosition = .imageLeading
                 statusItem.menu = menu.build()
                 
                 AppSetting.initSettting()
-                
-                if let subAddr = Wallet.WInst.SubAddress {
-                        var pwd = AppSetting.readPassword(service: AppConstants.SERVICE_NME_FOR_OSS,
-                                                          account: subAddr)
-                        if pwd == nil{
-                                pwd = showPasswordDialog()
-                        }
-                        
-                        if !Wallet.WInst.OpenWallet(auth: pwd!){
-                                dialogOK(question: "Error".localized, text: "open local account failed".localized)
-                                return
-                        }
-                }
         }
 
         func applicationWillTerminate(_ notification: Notification) {
