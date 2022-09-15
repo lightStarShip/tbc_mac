@@ -32,6 +32,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 
                 statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
                 statusItem.button?.image = NSImage(named: NSImage.Name("logo"))
+                statusItem.button?.image?.isTemplate = true
                 statusItem.button?.imagePosition = .imageLeading
                 statusItem.menu = menu.build()
                 
