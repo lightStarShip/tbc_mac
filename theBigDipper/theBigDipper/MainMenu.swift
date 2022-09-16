@@ -312,7 +312,7 @@ class MainMenu: NSObject {
                 }
                 
                 if let err = AppSetting.setupProxy(on: true){
-                        dialogOK(question: "Error".localized, text: "setup proxy failed".localized)
+                        dialogOK(question: "Error".localized, text: "setup proxy failed".localized+err.localizedDescription)
                         print("------>>> setupProxy:\(err.localizedDescription)")
                         return
                 }

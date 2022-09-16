@@ -283,6 +283,14 @@ extension AppSetting{
                 return false
         }
         static func setupProxySetting(on:Bool)->Error?{
+                
+                if !FileManager.default.fileExists(atPath: kProxyConfigPath){
+                        if on{
+                                return AppErr.conf("lost proxy setting cmd")
+                        }
+                        return nil
+                }
+                
                 let task = Process()
                 task.launchPath = kProxyConfigPath
                 var arg = ""
