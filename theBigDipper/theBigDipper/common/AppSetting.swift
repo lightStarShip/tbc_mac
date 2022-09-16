@@ -121,7 +121,7 @@ class AppSetting:NSObject{
         static func setupProxy(on:Bool) -> Error?{
                 
                 if on{
-                        let proxyAddr = "127.0.0.1:\(AppConstants.ProxyLocalPort)".toGoString()
+                        let proxyAddr = "0.0.0.0:\(AppConstants.ProxyLocalPort)".toGoString()
                         let node_addr = AppSetting.coreData?.minerAddrInUsed
                         guard let node = NodeItem.GetNode(addr:node_addr) else{
                                 return AppErr.conf("no valid node")

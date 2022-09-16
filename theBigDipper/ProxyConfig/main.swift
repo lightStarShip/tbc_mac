@@ -56,7 +56,7 @@ func setupProxy(on:Bool) ->Error?{
         var proxySettings: [String:AnyObject] = [:]
         
         if on{
-                proxySettings[kCFNetworkProxiesSOCKSProxy as String] = "127.0.0.1" as AnyObject
+                proxySettings[kCFNetworkProxiesSOCKSProxy as String] = "0.0.0.0" as AnyObject
                 proxySettings[kCFNetworkProxiesSOCKSPort as String] = AppConstants.ProxyLocalPort as AnyObject
                 proxySettings[kCFNetworkProxiesSOCKSEnable as String] = 1 as AnyObject
                 proxySettings[kCFNetworkProxiesExceptionsList as String] = [
