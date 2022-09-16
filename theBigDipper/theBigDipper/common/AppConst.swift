@@ -8,7 +8,7 @@
 import Foundation
 
 public struct AppConstants {
-        static public let CMD_LINE_VER = "1.0.2"
+        static public let CMD_LINE_VER = "1.0.3"
         static public let DBNAME_RuleVer = "CDRuleVersion"
         static public let DBNAME_WALLET = "CDWallet"
         static public let DBNAME_APPSETTING = "CDAppSetting"
