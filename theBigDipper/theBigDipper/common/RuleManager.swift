@@ -64,7 +64,7 @@ class RuleManager:NSObject{
                 
                 self.coreData = rVer
                 
-                NodeItem.fullFillNodes(jsonStr: rVer?.nodeStr)
+                NodeItem.fullFillNodes(jsonStr: rVer?.nodeStr, needNoti: true)
                 PriceItem.pricePopulate(jsonStr:rVer?.priceStr)
                 
                 AppSetting.workQueue.async {
