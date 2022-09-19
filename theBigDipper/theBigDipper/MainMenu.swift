@@ -17,7 +17,6 @@ class MainMenu: NSObject {
         var accountImport:AccountManager?
         var helpWindow:HelpToRecharge?
         var accInfo:AccountBalance?
-        
         private var popover:NSPopover?
         
         func build() ->NSMenu{
@@ -104,8 +103,7 @@ class MainMenu: NSObject {
                 
                 menu.addItem(quitMenuItem)
                 
-                print("*******************=>:", AppSetting.APP_VER)
-                
+                print("*******************app version=>:", AppSetting.APP_VER)
                 return menu
         }
         
@@ -182,40 +180,16 @@ class MainMenu: NSObject {
                 accInfo?.setAccInfo()
         }
         
-        @objc func testAllNode(sender: NSMenuItem) {
-                
-                let dispatchGrp = DispatchGroup()
-                for node in NodeItem.vipNodes{
-                        dispatchGrp.enter()
-                        AppSetting.workQueue.async(group:dispatchGrp) {
-                                defer{ dispatchGrp.leave()}
-                                node.pings = LibGetPingVal(node.wallet.toGoString(), node.ipStr.toGoString())
-                        }
-                }
-                for node in NodeItem.freeNodes {
-                        dispatchGrp.enter()
-                        AppSetting.workQueue.async(group:dispatchGrp) {
-                                defer{ dispatchGrp.leave()}
-                                node.pings = LibGetPingVal(node.wallet.toGoString(), node.ipStr.toGoString())
-                        }
-                }
-                
-                dispatchGrp.notify(queue: DispatchQueue.main){
-                        self.reloadNodeNenu(nil)
-                }
-        }
-        
-        @objc func reloadNodeNenu(_ notification: Notification?) {
+        @objc func reloadNodeNenu(_ notification: Notification?) {DispatchQueue.main.async  { [self] in
                 nodeListMenu.removeAllItems()
                 
                 let curAddr = AppSetting.coreData?.minerAddrInUsed
+                let nodeActView = NSHostingView(rootView: NodeActionView())
+                nodeActView.frame = NSRect(x: 0, y: 0, width: 200, height: 44)
+                let acttionItem = NSMenuItem()
+                acttionItem.view = nodeActView
+                self.nodeListMenu.addItem(acttionItem)
                 
-                
-               let buttont = NSButton(title: "Ping Test", target: self, action: #selector(testAllNode))
-                let testButton = NSMenuItem()
-                testButton.view = buttont
-                
-                nodeListMenu.addItem(testButton)
                 
                 nodeListMenu.addItem(NSMenuItem.separator())
                 let freeTips = NSMenuItem(
@@ -275,7 +249,7 @@ class MainMenu: NSObject {
                         }
                         nodeListMenu.addItem(nodeItem)
                 }
-        }
+        } }
         
         private func showAccountImport(){
                 if(accountImport == nil) {

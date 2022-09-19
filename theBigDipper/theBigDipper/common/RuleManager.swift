@@ -46,7 +46,7 @@ class RuleManager:NSObject{
                 
                 var rVer = PersistenceController.shared.findOneEntity(AppConstants.DBNAME_RuleVer) as? CDRuleVersion
                 if rVer == nil{
-                        rVer = CDRuleVersion(context: PersistenceController.shared.container.viewContext)//PersistenceController.shared.NewItem() as? CDRuleVersion
+                        rVer = CDRuleVersion(context: PersistenceController.shared.container.viewContext)
                         rVer!.dnsVer = -1
                         rVer!.ipVer = -1
                         rVer!.mustVer = -1
