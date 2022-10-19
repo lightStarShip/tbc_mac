@@ -158,7 +158,11 @@ class RuleManager:NSObject{
         }
         
         func domainStr()->String{
-                return coreData?.dnsStr ?? ""
+                var dns = (coreData?.dnsStr ?? "")
+                dns = dns + "\n\\.github.io\\."
+                dns = dns + "\n\\.msys2.org\\."
+                print(dns)
+                return dns
         }
         
         func innerIPStr()->String{

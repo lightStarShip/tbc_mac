@@ -16,6 +16,7 @@ class MainMenu: NSObject {
         var nodeListMenu = NSMenu()
         var accountImport:AccountManager?
         var helpWindow:HelpToRecharge?
+        var menualRul:MenualRule?
         var accInfo:AccountBalance?
         private var popover:NSPopover?
         
@@ -66,6 +67,14 @@ class MainMenu: NSObject {
                 )
                 copyProxy.target = self
                 menu.addItem(copyProxy)
+                
+                let addRule = NSMenuItem(
+                        title: "Manual Rule".localized,
+                        action: #selector(addMenualRule),
+                        keyEquivalent: ""
+                )
+                addRule.target = self
+                menu.addItem(addRule)
                 
                 let helpWebMenuItem = NSMenuItem(
                         title: "Find Help".localized,
@@ -121,6 +130,17 @@ class MainMenu: NSObject {
         @objc func findHelp(sender: NSMenuItem) {
                 let url = URL(string: AppConstants.WebSite)!
                 NSWorkspace.shared.open(url)
+        }
+        
+        @objc func addMenualRule(sender: NSMenuItem) {
+                if(menualRul == nil) {
+                        menualRul = MenualRule(windowNibName: "MenualRule")
+                        menualRul!.showWindow(nil)
+                }
+                NSApp.setActivationPolicy(.accessory)
+                NSApp.activate(ignoringOtherApps: true)
+                menualRul!.window?.orderFrontRegardless()
+                menualRul?.reset()
         }
         
         @objc func copyCmdLine(sender: NSMenuItem) {
