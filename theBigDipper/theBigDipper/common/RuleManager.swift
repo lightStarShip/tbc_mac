@@ -161,6 +161,7 @@ class RuleManager:NSObject{
                 var dns = (coreData?.dnsStr ?? "")
                 dns = dns + "\n\\.github.io\\."
                 dns = dns + "\n\\.msys2.org\\."
+                dns = dns + "\n\\.binance.org\\."
                 print(dns)
                 return dns
         }

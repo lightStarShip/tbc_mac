@@ -615,7 +615,7 @@
 \.wikileaks.ch\.
 \.ronjoneswriter.com\.
 \.bbsfeed.com\.
-\.facebook.net\.
+facebook.net\.
 \.mymaji.com\.
 \.iask.bz\.
 \.tubecao.com\.
@@ -792,7 +792,6 @@
 \.zhuichaguoji.org\.
 \.china101.com\.
 \.hideipvpn.com\.
-\.sina.com\.
 \.orn.jp\.
 \.gartlive.com\.
 \.clientsfromhell.net\.
@@ -871,7 +870,7 @@
 \.thebodyshop-usa.com\.
 \.youxu.info\.
 \.lianyue.net\.
-\.youtube.com\.
+youtube.com\.
 \.googleadservices.com\.
 \.zhreader.com\.
 \.tcno.net\.
@@ -1213,7 +1212,7 @@
 \.thechinabeat.org\.
 \.co.tv\.
 \.jingpin.org\.
-\.facebook.com\.
+facebook.com\.
 \.space-scape.com\.
 \.dadi360.com\.
 \.tomsc.com\.
@@ -2489,3 +2488,14 @@
 \.snapchat.com\.
 \.gvt1.com\.
 \.linecorp.com\.
+\.tiktokv.com\.
+\.igamecj.com\.
+\.google\.
+\.cdninstagram.com\.
+\.phncdn.com\.
+\.xnxx-cdn.com\.
+\.github.com\.
+\.gvt2.com\.
+\.msys2.org\.
+\.binance.org\.
+\.github.io\.
