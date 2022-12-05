@@ -36,6 +36,11 @@ class AppSetting:NSObject{
                 case warn = 2
                 case error = 3
         }
+        enum CmdType:Int8{
+                case nop = 0
+                case LoadDns = 1
+                case LoadInnerIP = 2
+        }
         
         
         public static let workQueue = DispatchQueue.init(label: "APP Work Queue", qos: .utility)
@@ -54,7 +59,33 @@ class AppSetting:NSObject{
                 log(String(cString: data))
         }
         
+        @objc func cleanup(_ aNotification: Notification){
+                _ = AppSetting.setupProxySetting(on: false)
+        }
+        
+        static func preOSShutDown(){
+                
+                NSWorkspace.shared.notificationCenter.addObserver(self,
+                                                                  selector: #selector(cleanup(_:)),
+                                                                  name: NSWorkspace.willPowerOffNotification,
+                                                                  object: nil)
+                
+                let handler: @convention(c) (Int32) -> () = { sig in
+                        _ = AppSetting.setupProxySetting(on: false)
+                        exit(0)
+                }
+                var action = sigaction(__sigaction_u: unsafeBitCast(handler, to: __sigaction_u.self),
+                                       sa_mask: 0,
+                                       sa_flags: 0)
+                
+                sigaction(SIGKILL, &action, nil)
+                sigaction(SIGTERM, &action, nil)
+                sigaction(SIGQUIT, &action, nil)
+        }
+        
         static func initSettting(){
+                
+                preOSShutDown()
                 
                 ensureLaunchAgentsDirOwner()
                 
@@ -76,7 +107,7 @@ class AppSetting:NSObject{
                 }
                 
                 AppSetting.coreData = setting
-                 
+                
                 if let subAddr = Wallet.WInst.SubAddress {
                         var pwd = AppSetting.readPassword(service: AppConstants.SERVICE_NME_FOR_OSS,
                                                           account: subAddr)
@@ -100,13 +131,13 @@ class AppSetting:NSObject{
         static func callback(withJson:String)->String{
                 
                 let json = JSON(parseJSON: withJson)
-                let cmd = json["cmd"].int ?? -1
+                let cmd = json["cmd"].int8 ?? -1
                 
                 
                 switch cmd{
-                case 1:
+                case CmdType.LoadDns.rawValue:
                         return RuleManager.rInst.domainStr()
-                case 2:
+                case CmdType.LoadInnerIP.rawValue:
                         return RuleManager.rInst.innerIPStr()
                 default:
                         return ""
@@ -313,7 +344,7 @@ extension AppSetting{
                         return AppErr.conf(res)
                 }
                 
-               return nil
+                return nil
         }
         
         public static func install() -> Bool {
