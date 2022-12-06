@@ -64,7 +64,7 @@ class AppSetting:NSObject{
         }
         
         static func preOSShutDown(){
-                
+
                 NSWorkspace.shared.notificationCenter.addObserver(self,
                                                                   selector: #selector(cleanup(_:)),
                                                                   name: NSWorkspace.willPowerOffNotification,
@@ -72,6 +72,7 @@ class AppSetting:NSObject{
                 
                 let handler: @convention(c) (Int32) -> () = { sig in
                         _ = AppSetting.setupProxySetting(on: false)
+                        sleep(2)
                         exit(0)
                 }
                 var action = sigaction(__sigaction_u: unsafeBitCast(handler, to: __sigaction_u.self),
