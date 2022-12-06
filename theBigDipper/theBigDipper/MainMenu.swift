@@ -17,6 +17,7 @@ class MainMenu: NSObject {
         var accountImport:AccountManager?
         var helpWindow:HelpToRecharge?
         var menualRul:MenualRule?
+        var globalOrSmart:NSMenuItem!
         var accInfo:AccountBalance?
         private var popover:NSPopover?
         
@@ -76,6 +77,18 @@ class MainMenu: NSObject {
 //                addRule.target = self
 //                menu.addItem(addRule)
                 
+                globalOrSmart = NSMenuItem(
+                        title: "Global Mode".localized,
+                        action: #selector(globalOrSmartMode),
+                        keyEquivalent: ""
+                )
+                
+                globalOrSmart.target = self
+                globalOrSmart.state = .off
+                menu.addItem(globalOrSmart)
+                
+                menu.addItem(NSMenuItem.separator())
+                
                 let helpWebMenuItem = NSMenuItem(
                         title: "Find Help".localized,
                         action: #selector(findHelp),
@@ -130,6 +143,17 @@ class MainMenu: NSObject {
         @objc func findHelp(sender: NSMenuItem) {
                 let url = URL(string: AppConstants.WebSite)!
                 NSWorkspace.shared.open(url)
+        }
+        
+        @objc func globalOrSmartMode(sender: NSMenuItem) {
+                
+                if IsGlobal() == 0{
+                        SetGlobal(1)
+                        globalOrSmart.state = .on
+                }else{
+                        SetGlobal(0)
+                        globalOrSmart.state = .off
+                }
         }
         
         @objc func addMenualRule(sender: NSMenuItem) {
@@ -317,6 +341,5 @@ class MainMenu: NSObject {
 
 extension MainMenu:NSMenuDelegate{
         func menuDidClose(_ menu: NSMenu) {
-                print("*********************>>>:",menu.items.count)
         }
 }
