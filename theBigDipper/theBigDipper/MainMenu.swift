@@ -68,13 +68,13 @@ class MainMenu: NSObject {
                 copyProxy.target = self
                 menu.addItem(copyProxy)
                 
-                let addRule = NSMenuItem(
-                        title: "Manual Rule".localized,
-                        action: #selector(addMenualRule),
-                        keyEquivalent: ""
-                )
-                addRule.target = self
-                menu.addItem(addRule)
+//                let addRule = NSMenuItem(
+//                        title: "Manual Rule".localized,
+//                        action: #selector(addMenualRule),
+//                        keyEquivalent: ""
+//                )
+//                addRule.target = self
+//                menu.addItem(addRule)
                 
                 let helpWebMenuItem = NSMenuItem(
                         title: "Find Help".localized,

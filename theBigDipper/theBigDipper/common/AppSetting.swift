@@ -58,18 +58,15 @@ class AppSetting:NSObject{
                 }
                 log(String(cString: data))
         }
-        
-        @objc func cleanup(_ aNotification: Notification){
+    
+        static func cleanup(n: Notification) {
                 _ = AppSetting.setupProxySetting(on: false)
+                sleep(2)
+                exit(0)
         }
         
         static func preOSShutDown(){
-
-                NSWorkspace.shared.notificationCenter.addObserver(self,
-                                                                  selector: #selector(cleanup(_:)),
-                                                                  name: NSWorkspace.willPowerOffNotification,
-                                                                  object: nil)
-                
+                NSWorkspace.shared.notificationCenter.addObserver(forName: NSWorkspace.willPowerOffNotification, object: nil, queue: nil, using: cleanup)
                 let handler: @convention(c) (Int32) -> () = { sig in
                         _ = AppSetting.setupProxySetting(on: false)
                         sleep(2)
